@@ -1,0 +1,358 @@
+#advanced-search-button{
+    color: white;
+    margin-left:1em;
+    margin-bottom:1em;
+    width:14%;
+    height:30px;
+    background-color: rgb(208, 209, 228);
+    border:none;
+}
+
+.bookingOverlayElems {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background-color: rgba(0,0,0,0.5); /* semi-transparent background */
+    z-index: 1000;
+}
+
+#booking-content-block {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1001; /* above the overlay */
+}
+
+
+#services-menu{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+.menuClass{
+    background-color: rgba(229, 229, 229, 0.548);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.menuElementClass{
+    padding-left: 1em;
+}
+
+/* Container styles */
+.test {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Aligns items to the bottom */
+    width: 300px;
+    height: 200px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Button styling */
+  .end-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .end-btn:hover {
+    background-color: #0056b3;
+  }
+  
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  img {
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .container {
+    padding: 2px 16px;
+  }
+  /* Container for both sides */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+  
+  /* Left and Right content */
+  .left, .right {
+    flex: 1;
+    padding: 50px;
+    text-align: center;
+  }
+
+    /* Styles for a element */
+  #nav-button{
+    text-decoration: none;/* Don't add any of ts basic styles*/
+    font-weight: 800;/* Make the link stand out from the rest of the text*/
+  }
+  #nav-button:hover{
+    color: rgb(119, 10, 18);/*on hover the user will see change in the color of the link*/
+}
+  /* Vertical divider line */
+  .divider {
+    width: 10px; /* Thin line */
+    background-color: #000; /* Black line color */
+    height: 100%; /* Full height */
+  }
+  
+  /* Optional styling for left and right sides */
+  .left {
+    background-color: #f0f0f0;
+  }
+  
+  .right {
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack elements vertically */
+
+}
+
+.right > * {
+    width: 100%; /* Set full width of container */
+    max-width: 1000px; /* Control maximum width */
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px 0; /* Add vertical spacing between elements */
+    text-align: center; /* Center text inside elements */
+}
+
+.right > *:not(.flex-grow-item) {
+    flex-grow: 0; /* Prevent growing if it's not needed */
+}
+
+.right .flex-grow-item {
+    flex-grow: 1; /* Let some items grow if needed */
+}
+
+
+  
+
+
+  .navigation {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+
+    list-style: none;
+    margin: 0;
+    background: rgb(101, 9, 15);
+}
+
+.navigation a {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+}
+
+.navigation a:hover {
+    background: rgb(80, 7, 12);
+}
+
+@media all and (max-width: 800px) {
+    .navigation {
+        justify-content: space-around;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .navigation {
+        flex-flow: column wrap;
+        padding: 0;
+    }
+
+    .navigation a {
+        text-align: center;
+        padding: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .navigation li:last-of-type a {
+        border-bottom: none;
+    }
+}
+
+#dropdown {
+    background: white;
+    border-radius: 10px;
+    width: 125px;
+    height: 125px;
+    float: right;
+    position: relative;
+
+    margin-top: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown-elems {
+    display: none;
+}
+
+.dropdown-button {
+    text-decoration: none;
+    border-top: 2px;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    background: rgb(255, 255, 255);
+    color: rgb(93, 93, 93);
+    width: 100%;
+    height: 50%;
+}
+
+.dropdown-button:hover {
+    background: rgb(172, 172, 172);
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.overlayElems{
+    display: none;
+}
+
+#content-block{
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.field-class {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#title {
+    text-align: center;
+    margin-bottom: 0;
+    color: rgb(0, 0, 0)
+}
+#signin-type{
+    margin-top:5px;
+    text-align:center;
+}
+.input-form {
+    width: 100%;
+    height: 25px;
+}
+#login-button{
+    color:white;
+    text-decoration: none;
+    background-color: rgb(101, 9, 15);
+    height:25px;width:100%;
+    border:0;
+    margin-bottom: 15px;
+}
+#login-button :hover {
+    background: rgb(56, 5, 8);
+}
+
+/* https://codepen.io/bcalou/pen/bGwJLqO */
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+#date-selector{
+    width:100%;
+}
+#time-slots{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.time-slot{
+    color: white;
+    background-color: rgb(27, 157, 116);
+    border:none;
+}
+#submit-book-button{
+    color:white;
+    text-decoration: none;
+    background-color: rgb(133, 94, 97);
+    height:25px;
+    width:100%;
+    margin-bottom: 1em;
+    border:0;
+}
+#submit-book-button :hover {
+    background: rgb(56, 5, 8);
+}
+.book-button{
+    color: white;
+    margin-left:1em;
+    margin-bottom:1em;
+    width:10%;
+    height:2em;
+    background-color: rgb(101, 9, 15);
+    border:none;
+}
+.book-button:hover {
+    background: rgb(80, 7, 12);
+}
+#booking-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.bookingOverlayElems{
+    display: none;
+}
+#booking-content-block{
+    background-color: white;
+    position: fixed;
+    width:20em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}

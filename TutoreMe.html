@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TUTORME</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="TutoreMe.css" />
+    <link rel="stylesheet" href="test.css">
+    <script src="test.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css"></link>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+    />
+</head>
+
+<body>
+
+<div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
+<div id="content-block" class="overlayElems">
+    <div>
+        <h2 id="title">Sign In</h2>
+        <p id="signin-type"></p>
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" id="username" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" id="password" />
+    </div>
+    <div class="field-class">
+        <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+    </div>
+</div>
+
+<div id="content-block-register" class="overlayElemsRegister">
+    <div>
+        <h2 id="reg-title">Register</h2>
+        <p id="register"></p>
+    </div>
+    <div class="field-class">
+        <label for="Email">Email:</label>
+        <input type="email" class="input-form" name="Email" />
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" />
+    </div>
+    <div class="field-class">
+        <button id="next-button" >Next</button>
+    </div>
+</div>
+
+<ul class="navigation" id="navbar">
+    <li id="logo"><img src="logo.webp" alt="" width="80px"></li>
+    <li><a href="test.html">Home</a></li>
+    <li><a href="advanced-search.html">Services</a></li>
+    <li><a href="register.html" id="register-btn">Register</a></li>
+    <li><a href="#" onclick="signIn()" id="sign-in-btn">Sign In</a></li>
+</ul>
+<div id="dropdown" class="dropdown-elems">
+    <button
+            onclick="openOverlay('As Customer')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Customers
+    </button>
+    <button
+            onclick="openOverlay('As Admin')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Administrators
+    </button>
+</div>
+
+
+<main>
+    <div class="container">
+        <div class="left">
+            <img src="TutorMe_Logo.jpg" width="500" height="auto">
+            <h2>Who Are We?</h2>
+            <p>TutorMe is a leading online tutoring platform dedicated to helping university students excel in a wide range of academic subjects. The company connects students with highly qualified tutors who specialize in fields such as math, science, humanities, and engineering. With a focus on personalized learning, TutorMe offers one-on-one sessions designed to meet the specific needs of each student, whether they require assistance with coursework, exam preparation, or developing a deeper understanding of complex topics. </p>
+            <button id="advanced-search-button"><a id="nav-button" href="advanced-search.html">Advanced Search 🔎</a></button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div></div>
+
+        <div id="booking-overlay" class="bookingOverlayElems" onclick="closeBookingOverlay()"></div>
+        <div id="booking-content-block" class="bookingOverlayElems">
+            <div class="field-class">
+                <h2 id="title">Book a Date</h2>
+            </div>
+    
+            <div class="field-class">
+                <input id="date-selector" type="date" onchange="selectDate()" required/>
+                <div id="time-slots"></div>
+            </div>
+    
+            <div class="field-class">
+                <button id="submit-book-button" onclick="submitTimeSlot()">Submit</button>
+            </div>
+        </div>
+
+        <div id="booking-overlay" class="bookingOverlayElems" onclick="closeBookingOverlay()"></div>
+        <div id="booking-content-block" class="bookingOverlayElems">
+        </div>
+        <div id="services-menu"></div>
+    </div>
+
+</main>
+</body>
+   <script type="text/javaScript" src="TutoreMe.js"></script>
+</html>

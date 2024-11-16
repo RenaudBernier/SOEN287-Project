@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client order</title>
+    <link rel="stylesheet" href="client_order_summary.css">
+    <link rel="stylesheet" href="test.css">
+    <script src="test.js"  defer></script>
+
+    <!-- Redirects user to homepage if they are not admin -->
+    <script>if(!sessionStorage.getItem("admin-login")) {
+        alert("Error: unauthorized access \nPlease log in as an admin")
+        window.location.href = "test.html";
+    }</script>
+
+
+</head>
+<body>
+    <script defer type="text/javaScript" src="offered-services.js"></script>
+    <div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
+    <div id="content-block" class="overlayElems">
+        <div>
+            <h2 id="title">Sign In</h2>
+            <p id="signin-type"></p>
+        </div>
+        <div class="field-class">
+            <label for="username">Username:</label>
+            <input type="text" class="input-form" id="username" name="username" />
+        </div>
+        <div class="field-class">
+            <label for="password">Password:</label>
+            <input type="password" class="input-form" name="password" id="password" />
+        </div>
+        <div class="field-class">
+            <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+        </div>
+    </div>
+
+    <div id="content-block-register" class="overlayElemsRegister">
+        <div>
+            <h2 id="reg-title">Register</h2>
+            <p id="register"></p>
+        </div>
+        <div class="field-class">
+            <label for="Email">Email:</label>
+            <input type="email" class="input-form" name="Email" />
+        </div>
+        <div class="field-class">
+            <label for="username">Username:</label>
+            <input type="text" class="input-form" name="username" />
+        </div>
+        <div class="field-class">
+            <label for="password">Password:</label>
+            <input type="password" class="input-form" name="password" />
+        </div>
+        <div class="field-class">
+            <button id="next-button" >Next</button>
+        </div>
+    </div>
+
+    <ul class="navigation" id="navbar">
+        <li id="logo"><img src="logo.webp" alt="" width="80px"></li>
+        <li><a href="test.html">Home</a></li>
+        <li><a href="advanced-search.html">Services</a></li>
+        <li><a href="register.html" id="register-btn">Register</a></li>
+        <li><a href="#" onclick="signIn()" id="sign-in-btn">Sign In</a></li>
+    </ul>
+    <div id="dropdown" class="dropdown-elems">
+        <button
+                onclick="openOverlay('As Customer')"
+                class="dropdown-elems dropdown-button"
+        >
+            For Customers
+        </button>
+        <button
+                onclick="openOverlay('As Admin')"
+                class="dropdown-elems dropdown-button"
+        >
+            For Administrators
+        </button>
+    </div>
+    <div class="container-header"></div>
+
+    <div class="container-parent">
+        <nav>
+            <ul class="container-nav">   <!--reload separate pages instead of dynamically generating--> 
+                <li><a href="adminsettings.html">Company profile</a></li>
+                <li><a href="offered-services.html">Offered services</a></li>
+                <li><a href="customers.html">Customers</a></li>
+
+
+            </ul>
+
+        </nav>
+
+        <div class="services-container">
+            <h1>My services</h1>
+            <!--Retain only one company-->
+            <div id="my-services">
+                <form id="services-form" action="">
+
+                </form>
+            </div>
+
+            <div class="container-add-save">
+                <button id="add" onclick="newService()">Add a service</button>
+                <button id="previous" onclick="storeServices()">Save</button>
+            </div>
+
+            <div class="container-prev-next">
+                <!--add functionality display next 10 entries-->
+
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

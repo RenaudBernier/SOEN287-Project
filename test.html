@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test App</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="test.css" />
+    <script defer type="text/javaScript" src="test.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body style="margin: 0; padding: 0">
+
+    <script src="carousel.js" defer></script> <!-- carousel.js is executed once the page's elements have loaded -->
+
+
+    <div id="big-container">
+
+
+      <div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
+      <div id="content-block" class="overlayElems">
+        <div>
+          <h2 id="title">Sign In</h2>
+          <p id="signin-type"></p>
+        </div>
+        <div class="field-class">
+          <label for="username">Username:</label>
+          <input type="text" class="input-form" id="username" name="username" />
+        </div>
+        <div class="field-class">
+          <label for="password">Password:</label>
+          <input type="password" class="input-form" name="password" id="password" />
+        </div>
+        <div class="field-class">
+          <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+        </div>
+      </div>
+
+      <div id="content-block-register" class="overlayElemsRegister">
+        <div>
+          <h2 id="reg-title">Register</h2>
+          <p id="register"></p>
+        </div>
+        <div class="field-class">
+          <label for="Email">Email:</label>
+          <input type="email" class="input-form" name="Email" />
+        </div>
+        <div class="field-class">
+          <label for="username">Username:</label>
+          <input type="text" class="input-form" name="username" />
+        </div>
+        <div class="field-class">
+          <label for="password">Password:</label>
+          <input type="password" class="input-form" name="password" />
+        </div>
+        <div class="field-class">
+          <button id="next-button" >Next</button>
+        </div>
+      </div>
+
+      <ul class="navigation" id="navbar">
+        <li id="logo"><img src="logo.webp" alt="" width="80px"></li>
+        <li><a href="test.html">Home</a></li>
+        <li><a href="advanced-search.html">Services</a></li>
+        <li><a href="register.html" id="register-btn">Register</a></li>
+        <li><a href="#" onclick="signIn()" id="sign-in-btn">Sign In</a></li>
+      </ul>
+      <div id="dropdown" class="dropdown-elems">
+        <button
+                onclick="openOverlay('As Customer')"
+                class="dropdown-elems dropdown-button"
+        >
+          For Customers
+        </button>
+        <button
+                onclick="openOverlay('As Admin')"
+                class="dropdown-elems dropdown-button"
+        >
+          For Administrators
+        </button>
+      </div>
+    <main onclick="closeOverlay()">
+      <h1>Our Services</h1>
+
+      <div class="carousel">
+        <div class="carousel-items">
+
+        </div>
+        <button class="btn" id="prevbtn" onclick="prevItem()"><</button>
+        <button class="btn" id="nextbtn" onclick="nextItem()">></button>
+      </div>
+
+      <div class="bullets">
+
+      </div>
+
+      <div class="aboutUs">
+        <h1>Who we are</h1>
+        <p> HypeBz started as a passion project by four Concordia University students who wanted a convenient
+        and cheap way for local businesses to promote their services. HypeBz is focused on making an easy-to-use
+        marketplace while also making social media and other promotion for partner companies. Our goal is for local
+        companies to not have to deal with the hassles of administrating websites and marketing campaigns.</p>
+        <div class="stats">
+          <div class="stat">
+            <h1>30,000+</h1>
+            <p>satisfied customers thanks to our partners</p>
+          </div>
+          <div class="stat">
+            <h1>$800,000+</h1>
+            <p>revenue have been recorded on our website</p>
+          </div>
+          <div class="stat">
+            <h1>100%</h1>
+            <p>of our partners noticed an increase in their customer-base</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    </div>
+  </body>
+</html>

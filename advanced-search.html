@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Test App</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="advanced-search.css" />
+    <link rel="stylesheet" href="test.css">
+    <script type="text/javaScript" src="advanced-search.js" defer></script>
+    <script type="text/javascript" src="test.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+    />
+</head>
+
+<body style="margin:0;padding: 0;">
+
+<div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
+<div id="content-block" class="overlayElems">
+    <div>
+        <h2 id="title">Sign In</h2>
+        <p id="signin-type"></p>
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" id="username" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" id="password" />
+    </div>
+    <div class="field-class">
+        <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+    </div>
+</div>
+
+<div id="content-block-register" class="overlayElemsRegister">
+    <div>
+        <h2 id="reg-title">Register</h2>
+        <p id="register"></p>
+    </div>
+    <div class="field-class">
+        <label for="Email">Email:</label>
+        <input type="email" class="input-form" name="Email" />
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" />
+    </div>
+    <div class="field-class">
+        <button id="next-button" >Next</button>
+    </div>
+</div>
+
+<ul class="navigation" id="navbar">
+    <li id="logo"><img src="logo.webp" alt="" width="80px"></li>
+    <li><a href="test.html">Home</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="register.html" id="register-btn">Register</a></li>
+    <li><a href="#" onclick="signIn()" id="sign-in-btn">Sign In</a></li>
+</ul>
+<div id="dropdown" class="dropdown-elems">
+    <button
+            onclick="openOverlay('As Customer')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Customers
+    </button>
+    <button
+            onclick="openOverlay('As Admin')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Administrators
+    </button>
+</div>
+
+
+<main onclick="closeOverlay()">
+
+    <div id="logo-container">
+        <img src="TutorMe_Logo.jpg" width="500" style="margin-top: 2em; margin-bottom: 2em;">
+    </div>
+    <div id="booking-overlay" class="bookingOverlayElems" onclick="closeBookingOverlay()"></div>
+    <div id="booking-content-block" class="bookingOverlayElems">
+        <div class="field-class">
+            <h2 id="title">Book a Date</h2>
+        </div>
+
+        <div class="field-class">
+            <input id="date-selector" type="date" onchange="selectDate()" required />
+            <div id="time-slots"></div>
+        </div>
+
+        <div class="field-class">
+            <button id="submit-book-button" onclick="submitTimeSlot()">Submit</button>
+        </div>
+    </div>
+    <div id="services-pannel">
+        <div id="inner-services-container">
+        <div>
+            <a id="nav-button" href="TutoreMe.html">&#11178 Go Back</a>
+        </div>
+            <input type="text" id="search-bar" onkeyup="searchServices()" placeholder="Search through the services...">
+        <div id="filters">
+            <label for="services">Select a service:</label>
+            <select onchange="filterSearch('service-selector')" name="services" id="service-selector">
+                <option value="none">---</option>
+            </select>
+            <label for="sort">Sort services alphabetically</label>
+            <button name="sort" value="downward" id="sorting-arrow" onclick="sortAlphabetically()">&#8595</button>
+            <label id="price-label">Price range:</label>
+            <div id="price-sliders">
+                <div class="price-slider">
+                    <label for="min-price">min:</label>
+                    <input name="min-price" type="range" class="slider" id="min-price" step="10" oninput="filterSearch('min-price')">
+                </div>
+                <div class="price-slider">
+                    <label for="max-price">max:</label>
+                    <input name="prices" type="range" class="slider" id="max-price" step="10" oninput="filterSearch('max-price')">    
+                </div>
+            </div>
+            <label for="columns">Number of columns:</label>
+            <input onchange="changeNumOfColumns()" id="columns-input" name="columns" type="number" min="2" max="4"
+                value="2">
+        </div>
+        <div id="services-menu"></div>
+    </div>
+    </div>
+</main>
+</body>
+
+</html>

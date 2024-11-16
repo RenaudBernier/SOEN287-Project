@@ -1,0 +1,151 @@
+.container-header{
+    border-bottom: 1px solid black;
+    width: 100vh;
+}
+
+.container-nav {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1px;
+    width: 130px;
+    border-right: 1px solid black;
+    height: 100vh;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+.container-parent{
+    display: flex;
+}
+
+/* direct child of parent with universal selector to select all children */
+.container-nav > * {
+    flex-basis: 50px;
+    justify-content: space-evenly;
+}
+
+.container-nav a {
+    text-decoration: none;
+    color: rgb(43, 41, 41);
+}
+
+li {
+    list-style-type: none;
+}
+
+#nav-order-summary {
+    color: purple;
+}
+
+.services-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 50px;
+    width: 80vw;
+}
+thead{
+    width: 150px;
+}
+
+input{
+    width: 100%;
+}
+.description{
+    height: 10em;
+}
+
+
+.container-sort {
+    display: flex;
+}
+
+.container-sort select {
+    width: 25%;
+}
+
+.container-prev-next {
+    display: flex;
+    justify-content:flex-end;
+}
+.container-add-save {
+    display: flex;
+    justify-content:space-between;
+    width: 100%;
+}
+
+input[type="text"], textarea {
+    width: 75%;
+}
+
+input.price{
+    width: 50px;
+}
+
+table, th, td {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f2f2f2;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.edit-stats{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.stat-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+@media all and (max-width: 1000px){
+    .container-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 80%;
+        border-bottom: 1px solid black;
+        border-right: 0;
+        height: 70px;
+        padding-right: 20px;
+        padding-top: 10px;
+        position:relative;
+    }
+    .services-container {
+        position: relative;
+
+    }
+    .container-parent{
+        flex-direction: column;
+        width: 100%;
+    }
+    .container-header{
+        width: 100%;
+    }
+}
+
+label{
+    margin-top: 20px;
+}
+.delete-button{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 75.6%;
+}

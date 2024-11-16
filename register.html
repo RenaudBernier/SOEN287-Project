@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="test.css" />
+    <link rel="stylesheet" href="register.css">
+    <script type="text/javaScript" src="test.js"></script>
+    <script src="register.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+    />
+</head>
+<body style="margin: 0; padding: 0">
+
+<main>
+    <img src="logo.webp" width="170px" alt="">
+    <div class="register-box">
+        <h2>Register</h2>
+        <div id="user-info">
+            <form action="test.html" method="POST">
+                <div id="part1" class="register-form">
+                    <label for="username">Username</label>
+                    <input type="text" id="username">
+                    <label for="email">Email</label>
+                    <input type="email" id="email">
+                    <label for="password">Password</label>
+                    <input type="password" id="password">
+                    <label for="confirmation">Re-enter password</label>
+                    <input type="password" id="confirmation">
+                    <button class="register-button" id="next" onclick="nextPart()" type="button">Next</button>
+                </div>
+                <div id="part2" class="register-form">
+                    <label for="card-number">Credit card number</label>
+                    <input type="text" id="card-number">
+                    <label for="exp-date">Expiry date</label>
+                    <input type="month" id="exp-date">
+                    <label for="CVV">CVV</label>
+                    <input type="text" id="CVV">
+                    <button class="register-button" onclick="registerUser()" >Create account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

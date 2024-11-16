@@ -1,0 +1,35 @@
+.open-sans-body {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+body {
+    font-family: "Open Sans";
+}
+
+.customer-header{
+    display: flex;
+    flex-direction: row;
+}
+.customer-header h4{
+    width: fit-content;
+    outline: black 1px solid;
+    min-width: 75px;
+    padding: 4px;
+    margin: 0;
+}
+
+input[type="date"]{
+    width: fit-content;
+}
+
+.details{
+    display: none;
+}
+
+.messages-container{
+    display: none;
+}

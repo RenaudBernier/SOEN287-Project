@@ -1,0 +1,193 @@
+/* https://codepen.io/bcalou/pen/bGwJLqO */
+/* https://stackoverflow.com/questions/628500/can-i-stop-100-width-text-boxes-from-extending-beyond-their-containers */
+
+.open-sans-body {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+body {
+    font-family: "Open Sans";
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+input[type="text"] {
+    width: 100%; 
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+#date-selector{
+    width:100%;
+}
+#time-slots{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.time-slot{
+    color: white;
+    background-color: rgb(27, 157, 116);
+    border:none;
+}
+#submit-book-button{
+    color:white;
+    text-decoration: none;
+    background-color: rgb(133, 94, 97);
+    height:25px;
+    width:100%;
+    margin-bottom: 1em;
+    border:0;
+}
+#submit-book-button :hover {
+    background: rgb(56, 5, 8);
+}
+.book-button{
+    color: white;
+    margin-left:1em;
+    margin-bottom:1em;
+    width:4em;
+    height:2em;
+    background-color: rgb(157, 14, 24);
+    border:none;
+}
+.book-button:hover {
+    background: rgb(119, 10, 18);
+}
+#booking-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.bookingOverlayElems{
+    display: none;
+}
+#booking-content-block{
+    background-color: white;
+    position: fixed;
+    width:20em;
+    height:25%;
+    top: 50%;
+    left: 50%;
+    z-index: 1001;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    padding:20px;
+    border-radius: 10px;
+}
+.field-class {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#title {
+    text-align: center;
+    margin-bottom: 0;
+    color: rgb(0, 0, 0)
+}
+#nav-button{
+    text-decoration: none;
+}
+#nav-button:hover{
+    color: rgb(119, 10, 18);
+}
+#search-bar{
+    display: block;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;  
+    height:2em;
+    justify-self: center;
+}
+#filters{
+    margin-top:1em;
+    margin-bottom:1em;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+#price-sliders{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    width:10em;
+    gap: 10px;
+}
+.price-slider{
+    display:flex;
+}
+#sorting-arrow{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+#services-pannel{
+    width:95%;
+    margin-left: auto;    
+    margin-right: auto;
+    background-color: #e0e0e0;
+}
+#inner-services-container{
+    width:95%;
+    margin-left: auto;    
+    margin-right: auto;
+    padding-top:1em;
+    padding-bottom:1em;
+}
+#services-menu{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.menuClass{
+    color:white;
+    background-size:100% 100%;
+    filter: brightness(1);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
+.menuElementClass{
+    font-size: 1em;
+    padding-left: 1em;
+}
+#logo-container {
+    flex: 1;
+    width:95%;
+    margin-left: auto;    
+    margin-right: auto;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin-bottom:1em;
+  }
+
+main{
+    position: absolute;
+}
+
+@media all and (max-width: 1000px) {
+    main{
+        position: relative;
+    }
+}
