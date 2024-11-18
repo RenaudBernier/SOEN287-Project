@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Test App</title>
+    <title>Welcome</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="test.css" />
     <script defer type="text/javaScript" src="test.js"></script>
@@ -28,6 +28,7 @@
           <h2 id="title">Sign In</h2>
           <p id="signin-type"></p>
         </div>
+        <form action="/login" method="POST">
         <div class="field-class">
           <label for="username">Username:</label>
           <input type="text" class="input-form" id="username" name="username" />
@@ -37,8 +38,9 @@
           <input type="password" class="input-form" name="password" id="password" />
         </div>
         <div class="field-class">
-          <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+          <button id="login-button">Login</button>
         </div>
+        </form>
       </div>
 
       <div id="content-block-register" class="overlayElemsRegister">

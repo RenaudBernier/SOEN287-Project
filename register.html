@@ -22,26 +22,26 @@
     <div class="register-box">
         <h2>Register</h2>
         <div id="user-info">
-            <form action="test.html" method="POST">
+            <form action="/register" method="POST">
                 <div id="part1" class="register-form">
-                    <label for="username">Username</label>
-                    <input type="text" id="username">
+                    <label for="username">Full name</label>
+                    <input type="text" id="username" name="name">
                     <label for="email">Email</label>
-                    <input type="email" id="email">
+                    <input type="email" id="email" name="email">
                     <label for="password">Password</label>
-                    <input type="password" id="password">
+                    <input type="password" id="password" name="password">
                     <label for="confirmation">Re-enter password</label>
                     <input type="password" id="confirmation">
                     <button class="register-button" id="next" onclick="nextPart()" type="button">Next</button>
                 </div>
                 <div id="part2" class="register-form">
                     <label for="card-number">Credit card number</label>
-                    <input type="text" id="card-number">
+                    <input type="text" id="card-number" name="card-number">
                     <label for="exp-date">Expiry date</label>
-                    <input type="month" id="exp-date">
+                    <input type="month" id="exp-date" name="exp-date">
                     <label for="CVV">CVV</label>
-                    <input type="text" id="CVV">
-                    <button class="register-button" onclick="registerUser()" >Create account</button>
+                    <input type="text" id="CVV" name="CVV">
+                    <button class="register-button">Create account</button>
                 </div>
             </form>
         </div>
