@@ -31,7 +31,7 @@ let services = [
   {
     price: 35,
     description: "Courses offered for Calculus I and II level problems. Flexible hours and you may cancel anytime.",
-    title: "Math tutoring",
+    name: "Math tutoring",
     image: "https://i0.wp.com/drsinghtutor.com/wp-content/uploads/2021/01/three-students-working-flatlay.webp?fit=920%2C614&ssl=1"
   },
   {

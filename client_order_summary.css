@@ -75,7 +75,7 @@ input{
     width: 100%;
 }
 
-input[type="text"], textarea {
+input[type="text"],input[type="number"] textarea {
     width: 75%;
 }
 

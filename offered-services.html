@@ -9,10 +9,10 @@
     <script src="test.js"  defer></script>
 
     <!-- Redirects user to homepage if they are not admin -->
-    <script>if(!sessionStorage.getItem("admin-login")) {
-        alert("Error: unauthorized access \nPlease log in as an admin")
-        window.location.href = "test.html";
-    }</script>
+<!--    <script>if(!sessionStorage.getItem("admin-login")) {-->
+<!--        alert("Error: unauthorized access \nPlease log in as an admin")-->
+<!--        window.location.href = "test.html";-->
+<!--    }</script>-->
 
 
 </head>
@@ -43,8 +43,8 @@
             <p id="register"></p>
         </div>
         <div class="field-class">
-            <label for="Email">Email:</label>
-            <input type="email" class="input-form" name="Email" />
+            <label for="email">Email:</label>
+            <input type="email" class="input-form" name="email" id="email" />
         </div>
         <div class="field-class">
             <label for="username">Username:</label>
