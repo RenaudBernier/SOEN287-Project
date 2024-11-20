@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 
 const adminServices = require('./adminServicesModule');
-const {adminServicesPage} = require("./adminServicesModule");
+const adminServicesPage = require('./adminServicesModule');
 
 app.use(cors());
 app.use(express.json());
@@ -24,9 +24,9 @@ db.connect((err) => {
 
 
 app.use(express.static(__dirname));
-app.listen(3000, () =>{
+app.listen(8080, () =>{
     console.log("listening");
 })
 
-adminServices.adminServicesPage(app, db);
+adminServicesPage(app, db);
 

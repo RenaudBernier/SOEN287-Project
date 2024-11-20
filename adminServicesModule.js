@@ -1,5 +1,5 @@
 
-export function adminServicesPage(app, db) {
+module.exports = function adminServicesPage(app, db) {
 
     app.get('/api/services', (req, res) => {
         let query = db.query('SELECT * FROM Services', (err, result) => {
