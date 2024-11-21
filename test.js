@@ -1,6 +1,12 @@
 var isOpen = false;
 
-
+async function checkforLoggedUser(){
+  const res = await fetch("/api/login-check");
+  const userInfo = await res.json();
+  console.log(userInfo);
+  return userInfo;
+}
+const userInfo = checkforLoggedUser();
 
 function signIn() {
   if (isOpen === true) {
@@ -90,19 +96,23 @@ if (sessionStorage.getItem("admin-login")) {
   registerButton.setAttribute("href", "offered-services.html");
 }
 
-if (sessionStorage.getItem("customer-login")) {
-  console.log(sessionStorage.getItem("customer-login"));
-  const signInButton = document.getElementById("sign-in-btn");
-  const registerButton = document.getElementById("register-btn");
-  console.log(signInButton);
-  signInButton.innerText="Log out"
-  signInButton.setAttribute('onclick', 'logOut()');
-  registerButton.innerText="My Page";
-  registerButton.setAttribute("href", "client-setting/client_settings.html");
+async function modifyPageOnLogin() {
+  if (await userInfo !== undefined && await userInfo !== null) {
+    console.log("TEST " + userInfo)
+    console.log(sessionStorage.getItem("customer-login"));
+    const signInButton = document.getElementById("sign-in-btn");
+    const registerButton = document.getElementById("register-btn");
+    console.log(signInButton);
+    signInButton.innerText = "Log out"
+    signInButton.setAttribute('onclick', 'logOut()');
+    registerButton.innerText = "My Page";
+    registerButton.setAttribute("href", "client-setting/client_settings.html");
+  }
 }
+modifyPageOnLogin();
 
-function logOut(){
-  sessionStorage.removeItem('customer-login');
-  sessionStorage.removeItem('admin-login');
-  window.location.href="test.html";
+async function logOut(){
+  event.preventDefault();
+  await fetch("/api/logout");
+  window.location.href = "test.html";
 }
