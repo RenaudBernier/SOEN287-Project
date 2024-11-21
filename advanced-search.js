@@ -1,137 +1,47 @@
-class Company {
-    constructor(title, logo, description, services) {
-        this.title = title;
-        this.logo = logo;
-        this.description = description;
-        this.services = services;
+const parseSchedule = (input) => {
+    const entries = input.split(';');
+    const result = {};
+
+    entries.forEach(entry => {
+    const [rawDate, ...rawTimeSlots] = entry.split(':');
+
+    const [month, day, year] = rawDate.split('-'); 
+    const formattedDate = `${year}-${month}-${day}`;
+  
+    const timeSlots = rawTimeSlots.join(':').split(',');
+
+    result[formattedDate] = timeSlots;
+    });
+
+    return result;
+  };
+
+let services=[]
+let formattedResult=[]
+
+  const fetchServices = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/services');
+      const data = await response.json();
+      for(let i=0;i<data.length;i++){
+        services.push(data[i]);
+      }
+      data.forEach(item => {
+        if(item.time_slots){
+            formattedResult[item.id] = parseSchedule(item.time_slots);
+        }
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-    get title() {
-        return this._title;
-    }
+  };
 
-    get logo() {
-        return this._logo;
-    }
-
-    get description() {
-        return this._description;
-    }
-
-    get services() {
-        return this._services;
-    }
-
-    set title(title) {
-        this._title = title;
-    }
-
-    set logo(logo) {
-        this._logo = logo;
-    }
-
-    set description(description) {
-        this._description = description;
-    }
-
-    set services(services) {
-        this._services = services;
-    }
-}
-
-class Services {
-    constructor(title, price, description, image) {
-        this._title = title;
-        this._price = price;
-        this._description = description;
-        this._image = image;
-    }
-    get title() {
-        return this._title;
-    }
-
-    get price() {
-        return this._price;
-    }
-
-    get description() {
-        return this._description;
-    }
-
-    get image() {
-        return this._image;
-    }
-
-    set title(title) {
-        this._title = title;
-    }
-
-    set price(price) {
-        this._price = price;
-    }
-
-    set description(description) {
-        this._description = description;
-    }
-
-    set image(image) {
-        this._image = image;
-    }
-}
-
-
-
-let services = [
-    {
-        price: 35,
-        description: "Courses offered for Calculus I and II level problems. Flexible hours and you may cancel anytime.",
-        title: "Math tutoring",
-        image: "https://i0.wp.com/drsinghtutor.com/wp-content/uploads/2021/01/three-students-working-flatlay.webp?fit=920%2C614&ssl=1"
-    },
-    {
-        price: 50,
-        description: "Having trouble with your physics assignements? Our top professionals are here to help you better understand any material that may trouble you.",
-        title: "Physics",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Tutoring_Physics.jpg/1280px-Tutoring_Physics.jpg"
-    }
-    ,
-    {
-        price: 20,
-        description: "Want to sharpen your English skils? Come try out our tutoring services for writting and reading comprehension.",
-        title: "English",
-        image: "https://media.istockphoto.com/id/1383488079/photo/book-fair.jpg?s=612x612&w=0&k=20&c=9JKhUjlYzYOj6Qz0OdEWcZAn_MoepltCHZRmROzEf9o="
-    }
-    ,
-    {
-        price: 200,
-        description: "Learn coding with the newest provided technologies available. We offer courses in Python, JavaScript, C++, and many more!",
-        title: "Programming",
-        image: "https://burst.shopifycdn.com/photos/coding-on-laptop.jpg?width=1000&format=pjpg&exif=0&iptc=0"
-    }
-]
-console.log("services1>>> ", services);
-
-const tempServices = sessionStorage.getItem("services");
-if(tempServices){
-    services = JSON.parse(tempServices);
-
-    for (let i = 0; i < services.length; i++)
-        services[i].price = Number(services[i].price);
-
-    console.log(services);
-}
-else{
-    console.log("Services not found");
-}
-
-console.log("services2>>> ", services);
-let company = new Company(
-    "TutorMe University tutoring",
-    "",
-    "",
-    services
-);
-
-
+const initializePage = async () => {
+    await fetchServices();
+    renderServicesMenu(services);
+    renderFilters(services);
+  };
+  initializePage();
 
 //setup the filterOptions
 let filterOptions = {
@@ -141,14 +51,14 @@ let filterOptions = {
     maxPrice: 0
 };
 
-function renderServicesMenu(company) {
-    for (let j = 0; j < company.services.length; j++) {
+function renderServicesMenu(services) {
+    for (let j = 0; j < services.length; j++) {
         //get the general block of servicesMenu where everything will be displayed
         const servicesMenu = document.getElementById("services-menu");
         //create a singular block from the menu
         const menuElement = document.createElement("div");
         menuElement.setAttribute("class", "menuClass");
-        menuElement.style.background = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${company.services[j].image}') center/cover no-repeat`;
+        menuElement.style.background = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${services[j].image_url}') center/cover no-repeat`;
         //create all the elements that will be stored in the menuElement
         const menuPrice = document.createElement("p");
         const menuDescription = document.createElement("p");
@@ -158,18 +68,18 @@ function renderServicesMenu(company) {
         menuPrice.setAttribute("class", "menuElementClass");
         menuDescription.setAttribute("class", "menuElementClass");
         menuTitle.setAttribute("class", "menuElementClass");
-        bookButton.setAttribute("onclick", "bookService()");
+        bookButton.setAttribute("onclick", `bookService('${services[j].id}')`);
         //give the children their respective innerHTML, values and append them
-        menuTitle.innerHTML = company.services[j].title;
-        menuTitle.value = company.services[j].title;
+        menuTitle.innerHTML = services[j].name;
+        menuTitle.value = services[j].name;
         menuElement.appendChild(menuTitle);
 
-        menuPrice.innerHTML = "Price: " + company.services[j].price + "$";
-        menuPrice.value = company.services[j].price;
+        menuPrice.innerHTML = "Price: " + services[j].price + "$";
+        menuPrice.value = services[j].price;
         menuElement.appendChild(menuPrice);
 
-        menuDescription.innerHTML = "Description: " + company.services[j].description;
-        menuDescription.value = company.services[j].description;
+        menuDescription.innerHTML = "Description: " + services[j].description;
+        menuDescription.value = services[j].description;
         menuElement.appendChild(menuDescription);
 
         bookButton.innerHTML = "Book";
@@ -181,8 +91,6 @@ function renderServicesMenu(company) {
     applyFilters();
 }
 
-
-renderServicesMenu(company);
 function sortAlphabetically(){
     const sortingArrow=document.getElementById("sorting-arrow");
     let index=1;
@@ -195,33 +103,29 @@ function sortAlphabetically(){
         sortingArrow.innerHTML="&#8595";
         index=1;
     }
-    let sortedCompanyServices = new Company(
-        "TutorMe University tutoring",
-        "",
-        "",
-        company.services.sort(function (a, b) {
-            if (a.title < b.title) {
+
+        services.sort(function (a, b) {
+            if (a.name < b.name) {
                 return -1*index;
             }
-            if (a.title > b.title) {
+            if (a.name > b.name) {
                 return 1*index;
             }
             return 0;
         })
-    );
-
     const servicesMenu = document.getElementById("services-menu");
     while (servicesMenu.firstChild) {
         servicesMenu.removeChild(servicesMenu.firstChild);
     }
-    renderServicesMenu(sortedCompanyServices);
+    renderServicesMenu(services);
 }
-function renderFilters() {
-    let min = company.services[0].price;
+
+const renderFilters = async (services) => {
+    let min = services[0].price;
     let max = 0;
-    for (let j = 0; j < company.services.length; j++) {
+    for (let j = 0; j < services.length; j++) {
         //prepare the min and max values for the price selector
-        tmp = company.services[j].price;
+        tmp = services[j].price;
         if (tmp < min) {
             min = tmp;
         } else if (tmp > max) {
@@ -230,7 +134,7 @@ function renderFilters() {
         //get the serviceSelector
         const serviceSelector = document.getElementById('service-selector');
         //insert all the service names in the serviceSelector
-        serviceSelector.options[serviceSelector.options.length] = new Option(company.services[j].title, company.services[j].title);
+        serviceSelector.options[serviceSelector.options.length] = new Option(services[j].name, services[j].name);
     }
     //insert all prices from min to max
     const minPrice = document.getElementById('min-price');
@@ -250,8 +154,6 @@ function renderFilters() {
     const priceLabel = document.getElementById("price-label");
     priceLabel.innerHTML = "Price range:(" + min + "-" + max + ")";
 }
-renderFilters();
-
 
 //get the value of the search bar and pass it to filterOptions
 //call applyFilters to verify if each menu block adheres to all filters
@@ -274,22 +176,10 @@ function filterSearch(typeOfFilter) {
             filterOptions.service = filterEl.options[filterEl.selectedIndex].value.toLowerCase();
             break;
         case "min-price":
-            // console.log("maxPriceSlider>>>", maxPriceSlider.value);
-            // console.log("filterEl>>>", filterEl.value);
-
-            // if(filterEl.value>=maxPriceSlider.value){
-            //     filterEl.value=maxPriceSlider.value-1;
-            // }
             filterOptions.minPrice = filterEl.value;
             priceLabel.innerHTML = "Price range:(" + filterOptions.minPrice + "-" + filterOptions.maxPrice + ")";
             break;
         case "max-price":
-            // console.log("minPriceSlider>>>", minPriceSlider.value);
-            // console.log("filterEl>>>", filterEl.value);
-
-            // if(filterEl.value<=minPriceSlider.value){
-            //     filterEl.value=minPriceSlider.value+1;
-            // }
             filterOptions.maxPrice = filterEl.value;
             priceLabel.innerHTML = "Price range:(" + filterOptions.minPrice + "-" + filterOptions.maxPrice + ")";
             break;
@@ -338,22 +228,51 @@ function changeNumOfColumns() {
     servicesMenu.style.gridTemplateColumns = "repeat(" + columnsInput.value + ", 1fr)";
 }
 //display all elements of the booking overlay through class name
-function bookService() {
+function bookService(id) {
+    const dateContainer=document.getElementById("date-container");
+    const bookingContentBlock = document.getElementById("booking-content-block");
 
     cLogin = sessionStorage.getItem("customer-login");
     if (cLogin) {
         const bookingOverlayElems = document.getElementsByClassName("bookingOverlayElems");
+        const dateSelector = document.createElement("input");
+        dateSelector.setAttribute("id","date-selector");
+        dateSelector.setAttribute("type","date");
+        dateSelector.addEventListener("change", function () {
+            selectDate(id, this.value);
+          });
+        dateContainer.appendChild(dateSelector);
         for (var i = 0; i < bookingOverlayElems.length; i++) {
             bookingOverlayElems[i].style.display = 'block';
         }
+        //added animation by changing the classList of bookingContentBlock
+        bookingContentBlock.classList.remove("retract");
+        bookingContentBlock.classList.add("expand");
     }
     else
         alert("You must be logged in to book a service");
 
 }
+
+let serviceId;
+let serviceDate;
+let serviceDateIndex;
+
 //this method would close the all the elements within the booking overlay
 function closeBookingOverlay() {
     const dateSelector = document.getElementById("date-selector");
+    const dateContainer=document.getElementById("date-container");
+    const bookingContentBlock = document.getElementById("booking-content-block");
+
+    serviceId=null;
+    serviceDate="";
+    serviceDateIndex=null;
+
+    dateContainer.removeChild(dateSelector);
+    //added animation by changing the classList of bookingContentBlock
+    bookingContentBlock.classList.remove("expand");
+    bookingContentBlock.classList.add("retract");
+    setTimeout(() => {
     const bookingOverlayElems = document.getElementsByClassName("bookingOverlayElems");
     //stop displaying all elements in the overlay by looping through all elements of class name bookingOverlayElems
     for (var i = 0; i < bookingOverlayElems.length; i++) {
@@ -369,29 +288,51 @@ function closeBookingOverlay() {
     submitBookButton.style.backgroundColor = "rgb(133, 94, 97)";
     //reset the value of the dateSelector input
     dateSelector.value = "";
+    }, 300);
 }
-const timeSlotsArr = ["10:00 AM", "1:00 PM", "3:00 PM", "5:00 PM"];
 let timeSelected = false;
 //this method creates buttons with a hardcoded timeSlotsArr and appends them to the timeSlots block
-function selectDate() {
+function selectDate(id,date) {
     const timeSlots = document.getElementById("time-slots");
+    timeSlots.style.gridTemplateColumns = "repeat(3, 1fr)";
     //remove old children so as to not rerender them
     while (timeSlots.firstChild) {
         timeSlots.removeChild(timeSlots.firstChild);
     }
-    for (let i = 0; i < timeSlotsArr.length; i++) {
+    if(formattedResult[id][date]){
+        for (let i = 0; i < formattedResult[id][date].length; i++) {
+            const timeSlot = document.createElement("button");
+            timeSlot.setAttribute("class", "time-slot");
+            timeSlot.setAttribute("id", "time-slot" + i);
+            timeSlot.setAttribute("value", "deselected");
+            //give each of them an onclick method that passes the id of the timeSlot
+
+            timeSlot.setAttribute(
+                "onclick",
+                `selectTime('time-slot${i}', ${id}, '${date}', ${i})`
+              );
+
+            timeSlot.innerHTML = formattedResult[id][date][i];
+            timeSlots.appendChild(timeSlot);
+        }
+    }else{
         const timeSlot = document.createElement("button");
         timeSlot.setAttribute("class", "time-slot");
-        timeSlot.setAttribute("id", "time-slot" + i);
+        timeSlot.setAttribute("id", "time-slot");
         timeSlot.setAttribute("value", "deselected");
-        //give each of them an onclick method that passes the id of the timeSlot
-        timeSlot.setAttribute("onclick", `selectTime('time-slot${i}')`);
-        timeSlot.innerHTML = timeSlotsArr[i];
+        timeSlots.style.gridTemplateColumns = "repeat(1, 1fr)";
+        timeSlot.innerHTML="No time slots available for this date";
         timeSlots.appendChild(timeSlot);
     }
+    
 }
+
+
 //this method sets the rgb(12, 71, 53) color and the selected value to the timeSlot of appropriate id
-function selectTime(timeSlotID) {
+function selectTime(timeSlotID,id,date,index) {
+    serviceId=id;
+    serviceDate=date;
+    serviceDateIndex=index;
     const timeSlots = document.getElementsByClassName("time-slot");
     const submitBookButton = document.getElementById("submit-book-button");
     for (let i = 0; i < timeSlots.length; i++) {
@@ -409,12 +350,69 @@ function selectTime(timeSlotID) {
     }
 }
 //onclick method for the submitBookButton that closes the overlay for now if it is clickable
-function submitTimeSlot() {
+async function submitTimeSlot() {
+    const requestData = {
+        client_id: 0,          
+        service_id: serviceId,        
+        time_slot: `${serviceDate} ${formattedResult[serviceId][serviceDate][serviceDateIndex]}`, 
+        service_fulfilled: false,     
+        message: "",                  
+        reponse: ""                  
+      };
     if (timeSelected) {
+        try {
+            const response = await fetch('http://localhost:8080/api/book-time-slot', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(requestData)
+            });
+      
+            const result = await response.json();
+            if (response.ok) {
+              console.log("Booking successful:", result);
+            } else {
+              console.error("Error in booking:", result.error);
+            }
+          } catch (error) {
+            console.error("Error submitting time slot:", error);
+          }
+
+        const index=formattedResult[serviceId][serviceDate].indexOf(formattedResult[serviceId][serviceDate][serviceDateIndex]);
+        if (index > -1) {
+            formattedResult[serviceId][serviceDate].splice(index, 1);
+        }
+        const reverseParseSchedule = (input, id) => {
+            const schedule = input[id];
+            const entries = [];
+          
+            Object.entries(schedule).forEach(([date, timeSlots]) => {
+              const [year, month, day] = date.split('-');
+              const formattedDate = `${month}-${day}-${year}`;
+              entries.push(`${formattedDate}:${timeSlots.join(',')}`);
+            });
+          
+            return `${entries.join(';')}`;
+          };
+        updatedTimeSlots=reverseParseSchedule(formattedResult,serviceId);
+          try {
+            const response = await fetch(`http://localhost:8080/api/services/${serviceId}/time-slots`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ time_slots: updatedTimeSlots })
+            });
+      
+            const result = await response.json();
+            if (response.ok) {
+              console.log("Time slots updated successfully:", result);
+            } else {
+              console.error("Error updating time slots:", result.error);
+            }
+          } catch (error) {
+            console.error("Error submitting time slot:", error);
+          }
         timeSelected = false;
         closeBookingOverlay();
     } else {
-        // console.log("greyed out");
     }
 }
 window.addEventListener('mouseup', function (event) {

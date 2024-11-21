@@ -95,11 +95,11 @@
         </div>
 
         <div class="field-class">
-            <input id="date-selector" type="date" onchange="selectDate()" required />
+            <div id="date-container"></div>
             <div id="time-slots"></div>
         </div>
 
-        <div class="field-class">
+        <div class="field-class" id="book-button-container">
             <button id="submit-book-button" onclick="submitTimeSlot()">Submit</button>
         </div>
     </div>
@@ -120,11 +120,11 @@
             <div id="price-sliders">
                 <div class="price-slider">
                     <label for="min-price">min:</label>
-                    <input name="min-price" type="range" class="slider" id="min-price" step="10" oninput="filterSearch('min-price')">
+                    <input name="min-price" type="range" class="slider" id="min-price" oninput="filterSearch('min-price')">
                 </div>
                 <div class="price-slider">
                     <label for="max-price">max:</label>
-                    <input name="prices" type="range" class="slider" id="max-price" step="10" oninput="filterSearch('max-price')">    
+                    <input name="prices" type="range" class="slider" id="max-price" oninput="filterSearch('max-price')">    
                 </div>
             </div>
             <label for="columns">Number of columns:</label>
