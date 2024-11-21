@@ -21,7 +21,7 @@ let formattedResult=[]
 
   const fetchServices = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/services');
+      const response = await fetch('/api/services');
       const data = await response.json();
       for(let i=0;i<data.length;i++){
         services.push(data[i]);
@@ -361,7 +361,7 @@ async function submitTimeSlot() {
       };
     if (timeSelected) {
         try {
-            const response = await fetch('http://localhost:8080/api/book-time-slot', {
+            const response = await fetch('/api/book-time-slot', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(requestData)
@@ -395,7 +395,7 @@ async function submitTimeSlot() {
           };
         updatedTimeSlots=reverseParseSchedule(formattedResult,serviceId);
           try {
-            const response = await fetch(`http://localhost:8080/api/services/${serviceId}/time-slots`, {
+            const response = await fetch(`/api/services/${serviceId}/time-slots`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ time_slots: updatedTimeSlots })
