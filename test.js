@@ -49,6 +49,7 @@ function openOverlay(signinType) {
 
 function closeOverlay() {
   const overlayElems = document.querySelectorAll(".overlayElems, .overlayElemsRegister");
+
   for (var i = 0; i < overlayElems.length; i++) {
     overlayElems[i].style.display = "none";
   }

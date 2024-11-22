@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="TutoreMe.css" />
     <link rel="stylesheet" href="test.css">
+    <script src="TutorMe.js" defer></script>
     <script src="test.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" href="styles.css"></link> -->
@@ -97,9 +98,9 @@
 
         <div class="divider"></div>
 
-        <div></div>
+        <!-- <div></div> -->
 
-        <div id="booking-overlay" class="bookingOverlayElems" onclick="closeBookingOverlay()"></div>
+        <!-- <div id="booking-overlay" class="bookingOverlayElems" onclick="closeBookingOverlay()"></div>
         <div id="booking-content-block" class="bookingOverlayElems">
             <div class="field-class">
                 <h2 id="title">Book a Date</h2>
@@ -113,10 +114,25 @@
             <div class="field-class">
                 <button id="submit-book-button" onclick="submitTimeSlot()">Submit</button>
             </div>
-        </div>
+        </div> -->
 
+        <!-- <div id="booking-overlay" class="bookingOverlayElems" onclick="closeBookingOverlay()"></div>
+                <div id="booking-content-block" class="bookingOverlayElems"> -->
         <div id="booking-overlay" class="bookingOverlayElems" onclick="closeBookingOverlay()"></div>
         <div id="booking-content-block" class="bookingOverlayElems">
+            <div class="field-class">
+                <h2 id="title">Book a Date</h2>
+            </div>
+        
+            <div class="field-class">
+                <div id="date-container"></div>
+                <div id="time-slots"></div>
+            </div>
+        
+            <div class="field-class" id="book-button-container">
+                <button id="submit-book-button" onclick="submitTimeSlot()">Submit</button>
+            </div>
+        </div>
         </div>
         <div id="services-menu"></div>
     </div>

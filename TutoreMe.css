@@ -18,24 +18,53 @@
     background-color: rgba(0,0,0,0.5); /* semi-transparent background */
     z-index: 1000;
 }
-
+@keyframes expand {
+    from {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes retract {
+    from {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+    }
+  }
 #booking-content-block {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -20%);
     background-color: white;
-    padding: 20px;
+    position: fixed;
+    width:20em;
+    top: 50%;
+    left: 50%;
+    z-index: 1001;
+    padding:20px;
     border-radius: 10px;
-    z-index: 1001; /* above the overlay */
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
 }
-
+#booking-content-block.expand {
+    animation: expand 0.3s forwards;
+  }
+  
+#booking-content-block.retract {
+    animation: retract 0.3s forwards;
+}
 
 #services-menu{
     margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
+    gap: 0px;
+    width: 100%;
 }
 .menuClass{
     background-color: rgba(229, 229, 229, 0.548);
@@ -100,6 +129,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+
   }
   
   /* Left and Right content */

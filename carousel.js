@@ -24,14 +24,11 @@ class Customer{
   }
 }
 
-
-
-
-let services = [
+let servicess = [
   {
     price: 35,
     description: "Courses offered for Calculus I and II level problems. Flexible hours and you may cancel anytime.",
-    name: "Math tutoring",
+    title: "Math tutoring",
     image: "https://i0.wp.com/drsinghtutor.com/wp-content/uploads/2021/01/three-students-working-flatlay.webp?fit=920%2C614&ssl=1"
   },
   {
@@ -56,11 +53,41 @@ let services = [
   }
 ]
 
-{
-  const tempServices = sessionStorage.getItem("services");
-  if(tempServices)
-    services = JSON.parse(tempServices);
-}
+let services=[]
+
+
+
+  async function fetchServices() {
+    try {
+      const response = await fetch('/api/services');
+      const data = await response.json();
+      services = new Array(0);
+      for(let i=0;i<data.length;i++){
+        services.push(data[i]);
+      }
+      console.log("Services Array:", services);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+const tempServices = sessionStorage.getItem("services");
+    if(tempServices){
+        services = JSON.parse(tempServices);
+    }
+
+const initializePage = async () => {
+  await fetchServices();
+  renderServicesMenu();
+};
+initializePage();
+
+
+// {
+//   const tempServices = sessionStorage.getItem("services");
+//   if(tempServices)
+//     services = JSON.parse(tempServices);
+// }
 
 let company = {
   name: "TutorMe Tutoring",
@@ -83,9 +110,12 @@ let company = {
   ]
 }
 
-const tempCompany = sessionStorage.getItem("company-profile");
-if(tempCompany)
-  company = JSON.parse(tempCompany);
+// const tempCompany = sessionStorage.getItem("company-profile");
+// if(tempCompany)
+//   company = JSON.parse(tempCompany);
+
+function renderServicesMenu(){
+
 
 const carousel = document.getElementsByClassName("carousel");
 const bulletContainer = document.getElementsByClassName("bullets")[0];
@@ -96,7 +126,7 @@ for (let i = 0; i < services.length; i++) {
   slide.className = "carousel-item";
 
   const image = document.createElement("img");
-  image.src = service.image;
+  image.src = service.image_url;
 
   slide.appendChild(image);
 
@@ -106,12 +136,10 @@ for (let i = 0; i < services.length; i++) {
   slide.appendChild(content);
 
   const name = document.createElement("h1");
-  name.textContent = service.title;
+  name.textContent = service.name;
 
   const description = document.createElement("p");
   description.textContent = service.description;
-
-
 
   content.appendChild(name);
   content.appendChild(description);
@@ -125,13 +153,13 @@ for (let i = 0; i < services.length; i++) {
   bullet.setAttribute("onclick", "bulletClick(" + i + ")");
   bulletContainer.appendChild(bullet);
 }
-
+}
 
 
 //The services from the companies are appended to their corresponding slides
 const titles = document.getElementsByClassName("offered-service");
 for (let i = 0; i < titles.length; i++) {
-  titles[i].innerHTML = services[i].title;
+  titles[i].innerHTML = services[i].name;
 }
 
 //Gets the carousel-item and bullet elements from the slide.

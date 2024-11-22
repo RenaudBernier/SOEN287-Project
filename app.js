@@ -111,6 +111,8 @@ app.post("/api/login", (req, res) => {
   })
 });
 
+
+
 app.get("/api/login-check", (req, res) => {
   console.log(req.session.user);
   res.json(req.session.user);
