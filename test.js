@@ -6,7 +6,18 @@ async function checkforLoggedUser(){
   console.log(userInfo);
   return userInfo;
 }
-const userInfo = checkforLoggedUser();
+let userInfo = checkforLoggedUser();
+
+async function checkforLoggedAdmin(){
+  const res = await fetch("/api/admin-login-check");
+  const adminInfo = await res.json();
+  console.log(adminInfo);
+  return adminInfo;
+}
+
+if(checkforLoggedAdmin() === "admin")
+  userInfo = "admin";
+console.log(userInfo);
 
 function signIn() {
   if (isOpen === true) {
@@ -87,18 +98,21 @@ function checkLoginCredentials(){
   }
 }
 
-if (sessionStorage.getItem("admin-login")) {
-  console.log(sessionStorage.getItem("admin-login"));
-  const signInButton = document.getElementById("sign-in-btn");
-  const registerButton = document.getElementById("register-btn");
-  signInButton.innerText="Log out"
-  signInButton.setAttribute('onclick', 'logOut()');
-  registerButton.innerText="My Page";
-  registerButton.setAttribute("href", "offered-services.html");
-}
+
 
 async function modifyPageOnLogin() {
-  if (await userInfo !== undefined && await userInfo !== null) {
+
+  if (await userInfo === "admin") {
+    console.log(sessionStorage.getItem("admin-login"));
+    const signInButton = document.getElementById("sign-in-btn");
+    const registerButton = document.getElementById("register-btn");
+    signInButton.innerText="Log out"
+    signInButton.setAttribute('onclick', 'logOut()');
+    registerButton.innerText="My Page";
+    registerButton.setAttribute("href", "offered-services.html");
+  }
+
+  else if (await userInfo !== undefined && await userInfo !== "loggedOut") {
     console.log("TEST " + userInfo)
     console.log(sessionStorage.getItem("customer-login"));
     const signInButton = document.getElementById("sign-in-btn");
@@ -112,8 +126,43 @@ async function modifyPageOnLogin() {
 }
 modifyPageOnLogin();
 
+async function logIn(event) {
+  event.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (email === "admin") {
+    console.log("Admin login attempt");
+    const res = await fetch("/api/admin-login",{
+      method: "POST",
+      headers:{
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify({password})
+    });
+    if (res.ok) {
+      window.location.href = "offered-services.html";
+    } else
+        alert("Email or password is incorrectADMIN. Please try again");
+
+  } else {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({email, password})
+    });
+
+    if (res.ok) {
+      window.location.href = "/TutoreMe.html";
+    } else
+        alert("Email or password is incorrect. Please try again");
+  }
+}
+
 async function logOut(){
   event.preventDefault();
   await fetch("/api/logout");
-  window.location.href = "test.html";
+  window.location.href = "/test.html";
 }

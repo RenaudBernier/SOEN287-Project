@@ -28,7 +28,7 @@ class Card{
     }
 }
 
-function nextPart(){
+async function nextPart(){
 const part1 = document.getElementById("part1");
 const part2 = document.getElementById("part2");
 
@@ -64,12 +64,26 @@ else if (password.length < 8){
 else if (password !== confirmation){
     alert("Please make sure that you entered the same password twice.");
 }
+else if(!await emailUsedCheck(email)){
+    alert("This email is already in use");
+}
 
 //Else, the user is sent to #part2 of the form
 else {
     part1.style.display = "none";
     part2.style.display = "flex";
 }
+}
+
+async function emailUsedCheck(email){
+    const res = await fetch("/api/email-check", {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({email})
+    })
+    return res.ok;
 }
 
 function registerUser(){
@@ -82,8 +96,8 @@ function registerUser(){
     const confirmation = document.getElementById("confirmation").value;
     const email = document.getElementById("email").value;
     const cardNb = document.getElementById("CVV").value;
-    const cvv = document.getElementById("card-number").value;
-    const cardDate = document.getElementById("exp-date").value;
+    const cvv = document.getElementById("cardNumber").value;
+    const cardDate = document.getElementById("expDate").value;
     console.log("Date: " + cardDate);
 
     const customer = new Customer(email, password, username, 0, cardNb, cvv, 0, cardDate );

@@ -6,7 +6,9 @@
     <title>Client order</title>
     <link rel="stylesheet" href="client_order_summary2.css">
     <link rel="stylesheet" href="../test.css">
-    <script defer src="test.js"></script>
+    <script src="frontEndCustomerCheck.js" ></script>
+    <script defer src="../test.js"></script>
+    <script defer src="../client_settings.js"></script>
 </head>
 <body>
 
@@ -16,17 +18,19 @@
         <h2 id="title">Sign In</h2>
         <p id="signin-type"></p>
     </div>
-    <div class="field-class">
-        <label for="username">Username:</label>
-        <input type="text" class="input-form" id="username" name="username" />
-    </div>
-    <div class="field-class">
-        <label for="password">Password:</label>
-        <input type="password" class="input-form" name="password" id="password" />
-    </div>
-    <div class="field-class">
-        <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
-    </div>
+    <form onsubmit=logIn(event)>
+        <div class="field-class">
+            <label for="email">Email:</label>
+            <input type="text" class="input-form" id="email" name="email" />
+        </div>
+        <div class="field-class">
+            <label for="password">Password:</label>
+            <input type="password" class="input-form" name="password" id="password" />
+        </div>
+        <div class="field-class">
+            <button id="login-button">Login</button>
+        </div>
+    </form>
 </div>
 
 <div id="content-block-register" class="overlayElemsRegister">
@@ -108,7 +112,7 @@
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="order-summary">
                     <tr>
                         <td><a href="receipt_001.html">#001</a></td>
                         <td>Math Tutoring</td>

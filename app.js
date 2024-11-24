@@ -9,6 +9,7 @@ const adminServicesPage = require('./adminServicesModule');
 const serviceBookedModule = require('./serviceBookedModule');
 const servicesModule = require('./servicesModule');
 const customersModule = require('./customersModule');
+const customerLogin = require("./customerLoginModule");
 
 app.use(cors());
 app.use(express.json());
@@ -36,7 +37,7 @@ app.get('/api/services', (req, res) => {
     }
     console.log("result",result);
     res.json(result);
-    
+
   });
 });
 
@@ -100,62 +101,114 @@ app.post('/api/book-time-slot', (req, res) => {
 
 app.use(express.static(__dirname));
 app.listen(8080, () =>{
-    console.log("listening ");
+    console.log("listening");
 })
 
-app.post("/api/login", (req, res) => {
-  const credentials = req.body;
-  console.log(credentials);
 
-  db.query("SELECT * FROM Customers", (err, result) => {
-    const customersArr = result;
-    let userInfo = null;
-    for(const entry of customersArr){
-      if (credentials.email === entry.email && credentials.password === entry.password) {
-        userInfo = entry;
-        break;
-      }
+
+
+app.post("/api/register", (req, res) => {
+  const customer = req.body;
+  db.query("INSERT INTO Customers SET ?", customer, (err, result) =>{
+    if (err) {
+      res.send("Error: registration failed");
+      console.log(customer);
     }
-
-    if (userInfo !== null){
-      console.log(userInfo);
-      req.session.user = userInfo;
-      res.redirect(req.get('referer'));
-    }
-
-  })
-});
-
-// const data = {
-//   name: 'TutorMe',   // Replace with actual data
-//   about_us: 'We are a great company', // Replace with actual data
-//   logo_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fcat%2F&psig=AOvVaw23H0DlklegnZ38rrtBJmqA&ust=1732502184785000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPCW5dv384kDFQAAAAAdAAAAABAE",       // Replace with actual data
-//   stat1: "test1",
-//   stat2: "test2",
-//   stat3: "test3"
-// };
-
-// const query = 'INSERT INTO Company (name, about_us, logo_url, stat1, stat2, stat3) VALUES (?, ?, ?, ?, ?, ?)';
-// db.query(query, [data.name, data.about_us, data.logo_url, data.stat1, data.stat2, data.stat3], (err, results) => {
-//     if (err) {
-//         console.error('Error inserting data:', err.message);
-//         return;
-//     }
-//     console.log('Data inserted successfully:', results);
-// });
-
-app.get("/api/login-check", (req, res) => {
-  console.log(req.session.user);
-  res.json(req.session.user);
-});
-app.get("/api/logout", (req, res) => {
-  req.session.destroy((err) => {
+  });
+  db.query("SELECT * FROM Customers WHERE email = ?", req.body.email, (err, result) =>{
     if (err)
-      console.log("Couldn't destroy session");
+      res.send("Error: could not log into new account");
+    else{
+      req.session.user = result[0];
+    }
+  })
+  res.redirect("../test.html");
+});
+
+app.post("/api/admin-login", (req, res) =>{
+  const password = req.body.password;
+  if (password === "password123") {
+    req.session.user = "admin";
+    res.status(200).json({message: "logged in as admin"});
+  }
+  else
+    res.status(400).json({message: "login unsuccessful"});
+});
+
+app.get("/api/admin-login-check", (req, res) => {
+  console.log("adminCheck");
+  if (req.session.user === "admin"){
+    res.json("admin");
+  }
+  else
+    res.json("");
+});
+
+app.post("/api/update-user", (req, res) => {
+
+  const newInfo = req.body;
+  console.log(newInfo);
+  db.query("UPDATE Customers SET ? WHERE id = ?", [newInfo, newInfo.id], (err, result) =>{
+    if (err) {
+      res.send("Error updating user");
+    }
+    req.session.user = newInfo;
+    req.session.save((err) => {
+      if (err) {
+        console.log("Error updating session");
+      }
+    })
   });
   res.redirect('/test.html');
 });
 
+app.get("/api/my-orders", (req, res) => {
+  const userId = req.session.user.id;
+  let servicesBooked;
+  console.log("THE USER'S ID IS " + userId);
+
+  function queryDB() {
+    return new Promise((resolve, reject) => {
+      db.query("SELECT sb.*, service.name FROM ServiceBooked sb " +
+          "JOIN Services service ON sb.service_id = service.id WHERE sb.client_id = ?", [userId], (err, result) => {
+        if (err) {
+          console.log("Error searching services booked");
+          return;
+        }
+        console.log("The result is:", result);
+        resolve(result);
+      })
+    })
+  }
+
+
+  function queryForName(servicesBooked) {
+    return new Promise((resolve, reject) => {
+      for (let i = 0; i < servicesBooked.length; i++) {
+        db.query("SELECT * FROM Services WHERE id = ?", [servicesBooked[i].service_id], (err, result) => {
+          if (err) {
+            console.log("Error retrieving services");
+            return;
+          }
+          console.log("Here is the request ", result);
+          servicesBooked[i].name = result[0].name;
+        })
+      }
+      resolve(servicesBooked);
+    })
+  }
+
+  async function addName() {
+    let servicesBooked = await queryDB();
+
+    console.log( "Returned array of services: ", servicesBooked);
+    res.json(servicesBooked);
+  }
+  addName();
+
+})
+
+customerLogin(app, db);
 adminServicesPage(app, db);
 serviceBookedModule(app,db);
 servicesModule(app,db);

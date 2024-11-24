@@ -6,7 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="client_customer_support.css">
     <link rel="stylesheet" href="../test.css">
-    <script defer src="test.js"></script>
+    <script src="frontEndCustomerCheck.js" ></script>
+    <script defer src="../test.js"></script>
 </head>
 <body style="margin:0">
 
@@ -16,17 +17,19 @@
         <h2 id="title">Sign In</h2>
         <p id="signin-type"></p>
     </div>
-    <div class="field-class">
-        <label for="username">Username:</label>
-        <input type="text" class="input-form" id="username" name="username" />
-    </div>
-    <div class="field-class">
-        <label for="password">Password:</label>
-        <input type="password" class="input-form" name="password" id="password" />
-    </div>
-    <div class="field-class">
-        <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
-    </div>
+    <form onsubmit=logIn(event)>
+        <div class="field-class">
+            <label for="email">Email:</label>
+            <input type="text" class="input-form" id="email" name="email" />
+        </div>
+        <div class="field-class">
+            <label for="password">Password:</label>
+            <input type="password" class="input-form" name="password" id="password" />
+        </div>
+        <div class="field-class">
+            <button id="login-button">Login</button>
+        </div>
+    </form>
 </div>
 
 <div id="content-block-register" class="overlayElemsRegister">
@@ -110,7 +113,7 @@
                     <div id="company-response">
                     </div>
                 </div>
-                
+
             </div>
             
         </div>

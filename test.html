@@ -28,7 +28,7 @@
           <h2 id="title">Sign In</h2>
           <p id="signin-type"></p>
         </div>
-        <form action="/api/login" method="POST">
+        <form onsubmit=logIn(event)>
         <div class="field-class">
           <label for="email">Email:</label>
           <input type="text" class="input-form" id="email" name="email" />
