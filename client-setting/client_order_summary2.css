@@ -1,0 +1,78 @@
+.container-header{
+    border-bottom: 1px solid black;
+    width: 100vh;
+}
+
+.container-nav {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1px;
+    width: 130px;
+    border-right: 1px solid black;
+    height: 100vh;
+    padding-right: 20px;
+    padding-top: 30px;
+}
+
+.container-parent{
+    display: flex;
+    position: absolute;
+    left: 0;
+}
+
+/* direct child of parent with universal selector to select all children */
+.container-nav > * {
+    flex-basis: 50px;
+    justify-content: space-evenly;
+}
+
+.container-nav a {
+    text-decoration: none;
+    color: rgb(43, 41, 41);
+}
+
+li {
+    list-style-type: none;
+}
+
+#nav-order-summary {
+    color: purple;
+}
+
+.container-services-settings {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 50px;
+}
+
+.container-sort {
+    display: flex;
+}
+
+.container-sort select {
+    width: 25%;
+}
+
+.container-prev-next {
+    display: flex;
+    justify-content:flex-end;
+}
+
+input[type="text"] {
+    width: 75%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+}

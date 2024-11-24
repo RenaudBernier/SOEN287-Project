@@ -1,0 +1,72 @@
+.container-header{
+    border-bottom: 1px solid black;
+    width: 100vh;
+}
+
+.container-nav {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1px;
+    width: 130px;
+    border-right: 1px solid black;
+    height: 100vh;
+    padding-right: 25px;
+    padding-top: 30px;
+    
+}
+
+.container-parent{
+    display: flex;
+    position: absolute;
+    left: 0;
+}
+
+/* direct child of parent with universal selector to select all children */
+.container-nav > * {
+    flex-basis: 50px;
+    justify-content: space-evenly;
+}
+
+.container-nav a{
+    text-decoration: none;
+    color: rgb(43, 41, 41);    
+}
+
+li {
+    list-style-type: none;
+}
+
+.container-profile-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-left: 50px;
+}
+
+#nav-profile-settings {
+    color: purple;
+}
+
+#profile-settings-heading {
+    margin-bottom: 3px;
+}
+
+.container-profile-settings label{
+    margin-bottom: -16px;
+}
+
+.container-profile-settings input[type = "button"] {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+.container-submit-reset {
+    display: flex;
+}
+
+.container-submit-discard input[type="submit"],
+.container-submit-discard input[type="reset"] {
+    margin-top: -1px;
+    width: 49%;
+}

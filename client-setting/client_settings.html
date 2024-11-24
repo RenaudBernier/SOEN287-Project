@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Settings</title>
+    <link rel="stylesheet" href="client_settings.css">
+    <link rel="stylesheet" href="../test.css">
+    <script defer src="test.js"></script>
+</head>
+<body>
+
+<div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
+<div id="content-block" class="overlayElems">
+    <div>
+        <h2 id="title">Sign In</h2>
+        <p id="signin-type"></p>
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" id="username" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" id="password" />
+    </div>
+    <div class="field-class">
+        <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+    </div>
+</div>
+
+<div id="content-block-register" class="overlayElemsRegister">
+    <div>
+        <h2 id="reg-title">Register</h2>
+        <p id="register"></p>
+    </div>
+    <div class="field-class">
+        <label for="Email">Email:</label>
+        <input type="email" class="input-form" name="Email" />
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" />
+    </div>
+    <div class="field-class">
+        <button id="next-button" >Next</button>
+    </div>
+</div>
+
+<ul class="navigation" id="navbar">
+    <li id="logo"><img src="../logo.webp" alt="" width="80px"></li>
+    <li><a href="../test.html">Home</a></li>
+    <li><a href="../advanced-search.html">Services</a></li>
+    <li><a href="../register.html" id="register-btn">Register</a></li>
+    <li><a href="#" onclick="signIn()" id="sign-in-btn">Sign In</a></li>
+</ul>
+<div id="dropdown" class="dropdown-elems">
+    <button
+            onclick="openOverlay('As Customer')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Customers
+    </button>
+    <button
+            onclick="openOverlay('As Admin')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Administrators
+    </button>
+</div>
+
+<main>
+    <div class="container-header"></div>
+    <div class="container-parent">
+        <nav>
+            <ul class="container-nav">   <!--reload separate pages instead of dynamically generating--> 
+                <li><a href="client_settings.html" id="nav-profile-settings">Profile settings</a></li>
+                <li><a href="client_order_summary.html">Order summary</a></li>
+                <li><a href="client_customer_support.html">Customer support</a></li>
+            </ul>
+        </nav>
+
+        <!--Default page to load-->
+    
+        <form id="profile-settings-form" class="container-profile-settings">
+            <h1 id="profile-settings-heading">Profile settings</h1>
+
+            <label for="client-name">Name</label>
+            <input type="text" id="client-name" required>
+            
+            <label for="client-email">Email</label>
+            <input type="email" id="client-email" required>
+
+            <label for="client-password">Password</label>
+            <input type="password" id="client-password" required>
+
+            <label for="client-address">Address</label>
+            <input type="text" id="client-address" required>
+        
+            <label for="credit-card-number">Credit card number</label>
+            <input type="text" id="credit-card-number" name="payment-info" required>
+
+            <label for="expiry-date">Expiry date (M/D/Y)</label>
+            <input type="text" id="expiry-date" name="payment-info" required>
+
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="payment-info" required>
+
+            <input type="button" value="Delete account">
+            
+            <div class="container-submit-discard">
+                <input type="submit" value="Save changes">    
+                <input type="reset" value="Discard">
+            </div>    
+
+        </form>
+    </div>
+</main>
+</body>
+</html>

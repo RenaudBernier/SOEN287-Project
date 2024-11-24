@@ -158,6 +158,9 @@ input[type="text"] {
 .price-slider{
     display:flex;
 }
+.slider{
+    accent-color: rgb(157, 14, 24);
+}
 #sorting-arrow{
     background: none;
 	color: inherit;
@@ -210,6 +213,19 @@ main{
     position: absolute;
 }
 
+label{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+select{
+    background-color: rgb(235, 235, 235);
+  }
+select option:hover{
+    background-color: rgb(122, 122, 122);
+}
+input[type="number"]{
+    background-color: rgb(235, 235, 235);
+}
 @media all and (max-width: 1000px) {
     main{
         position: relative;

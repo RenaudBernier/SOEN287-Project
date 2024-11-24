@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="client_customer_support.css">
+    <link rel="stylesheet" href="../test.css">
+    <script defer src="test.js"></script>
+</head>
+<body style="margin:0">
+
+<div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
+<div id="content-block" class="overlayElems">
+    <div>
+        <h2 id="title">Sign In</h2>
+        <p id="signin-type"></p>
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" id="username" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" id="password" />
+    </div>
+    <div class="field-class">
+        <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+    </div>
+</div>
+
+<div id="content-block-register" class="overlayElemsRegister">
+    <div>
+        <h2 id="reg-title">Register</h2>
+        <p id="register"></p>
+    </div>
+    <div class="field-class">
+        <label for="Email">Email:</label>
+        <input type="email" class="input-form" name="Email" />
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" />
+    </div>
+    <div class="field-class">
+        <button id="next-button" >Next</button>
+    </div>
+</div>
+
+<ul class="navigation" id="navbar">
+    <li id="logo"><img src="../logo.webp" alt="" width="80px"></li>
+    <li><a href="../test.html">Home</a></li>
+    <li><a href="../advanced-search.html">Services</a></li>
+    <li><a href="../register.html" id="register-btn">Register</a></li>
+    <li><a href="#" onclick="signIn()" id="sign-in-btn">Sign In</a></li>
+</ul>
+<div id="dropdown" class="dropdown-elems">
+    <button
+            onclick="openOverlay('As Customer')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Customers
+    </button>
+    <button
+            onclick="openOverlay('As Admin')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Administrators
+    </button>
+</div>
+
+<main>
+    <div class="container-header"></div>
+
+    <div class="container-parent">
+        <nav>
+            <ul class="container-nav">   <!--reload separate pages instead of dynamically generating--> 
+                <li><a href="client_settings.html">Profile settings</a></li>
+                <li><a href="client_order_summary.html" id="nav-order-summary">Order summary</a></li>
+                <li><a id="nav-customer-support" href="client_customer_support.html">Customer support</a></li>
+            </ul>
+        </nav>
+
+        <div class="container-customer-support">        
+            <h1>Customer support</h1>
+
+            <div class="container-sort">
+
+                <div class="container-service-sort">
+                    <label for="message-select"></label>
+                    <select id="message-select" onchange="modifyTextbox()">
+                        <option value="" disabled selected>Select Service</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="change-textarea">
+                    <form id="client-support-form">
+                        <label for="client-customer-support-text"></label>
+                        <textarea rows="10" cols="50" name="client-customer-support-text" id="client-customer-support-text" placeholder="Please describe in detail how we can help."></textarea>
+                    </form>
+                <button id="submit-button" type="submit" onclick="submitMessage()">Submit</button>
+                <div id="company-response-container">
+                    <h3 id="company-response-title">
+                    </h3>
+                    <div id="company-response">
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    <script type="text/javascript" src="client_customer_support.js"></script>
+</main>
+</body>
+</html>

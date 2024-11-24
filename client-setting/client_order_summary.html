@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client order</title>
+    <link rel="stylesheet" href="client_order_summary2.css">
+    <link rel="stylesheet" href="../test.css">
+    <script defer src="test.js"></script>
+</head>
+<body>
+
+<div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
+<div id="content-block" class="overlayElems">
+    <div>
+        <h2 id="title">Sign In</h2>
+        <p id="signin-type"></p>
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" id="username" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" id="password" />
+    </div>
+    <div class="field-class">
+        <button id="login-button" onclick="checkLoginCredentials()" >Login</button>
+    </div>
+</div>
+
+<div id="content-block-register" class="overlayElemsRegister">
+    <div>
+        <h2 id="reg-title">Register</h2>
+        <p id="register"></p>
+    </div>
+    <div class="field-class">
+        <label for="Email">Email:</label>
+        <input type="email" class="input-form" name="Email" />
+    </div>
+    <div class="field-class">
+        <label for="username">Username:</label>
+        <input type="text" class="input-form" name="username" />
+    </div>
+    <div class="field-class">
+        <label for="password">Password:</label>
+        <input type="password" class="input-form" name="password" />
+    </div>
+    <div class="field-class">
+        <button id="next-button" >Next</button>
+    </div>
+</div>
+
+<ul class="navigation" id="navbar">
+    <li id="logo"><img src="../logo.webp" alt="" width="80px"></li>
+    <li><a href="../test.html">Home</a></li>
+    <li><a href="../advanced-search.html">Services</a></li>
+    <li><a href="../register.html" id="register-btn">Register</a></li>
+    <li><a href="#" onclick="signIn()" id="sign-in-btn">Sign In</a></li>
+</ul>
+<div id="dropdown" class="dropdown-elems">
+    <button
+            onclick="openOverlay('As Customer')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Customers
+    </button>
+    <button
+            onclick="openOverlay('As Admin')"
+            class="dropdown-elems dropdown-button"
+    >
+        For Administrators
+    </button>
+</div>
+
+<main>
+    <div class="container-header"></div>
+
+    <div class="container-parent">
+        <nav>
+            <ul class="container-nav">   <!--reload separate pages instead of dynamically generating--> 
+                <li><a href="client_settings.html">Profile settings</a></li>
+                <li><a href="client_order_summary.html" id="nav-order-summary">Order summary</a></li>
+                <li><a href="client_customer_support.html">Customer support</a></li>
+            </ul>
+        </nav>
+
+        <div class="container-services-settings">        
+            <h1>Order summary</h1>
+            <!--Retain only one company-->
+
+            <div class="container-sort">
+                <select id="date-sort">
+                    <option value="" disabled selected>Date range</option>
+                    <option>Upcoming</option>
+                    <option>Past month</option>
+                    <option>Past year</option>
+                </select>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Service</th>
+                        <th>Company</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="receipt_001.html">#001</a></td>
+                        <td>Math Tutoring</td>
+                        <td>TutorMe</td>
+                        <td>May 5, 2024</td>
+                        <td>$100.00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="../assets/receipts/receipt_002.html">#002</a></td>
+                        <td>Physics</td>
+                        <td>TutorMe</td>
+                        <td>Oct 10, 2024</td>
+                        <td>$50.00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="../assets/receipts/receipt_003.html">#003</a></td>
+                        <td>Test</td>
+                        <td>TutorMe</td>
+                        <td>July 14, 2024</td>
+                        <td>$150.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="container-prev-next">
+                <!--add functionality display next 10 entries-->
+                <button id="previous">Previous</button>
+                <button id="next">Next</button>
+            </div>
+            
+
+        </div>
+    </div>
+</main>
+</body>
+</html>

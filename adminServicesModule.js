@@ -12,7 +12,6 @@ module.exports = function adminServicesPage(app, db) {
 
     app.post('/api/change-services', async (req, res) => {
         const services = req.body;
-        console.log(services);
         let array_ids = services.map(service => service.id);
 
         async function getIds() {

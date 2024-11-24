@@ -39,15 +39,52 @@
       opacity: 0;
     }
   }
+@keyframes expand {
+    from {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes retract {
+    from {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+    }
+  }
 #booking-content-block {
     background-color: white;
+    background-color: white;
     position: fixed;
+    width:20em;
+    height:100%;
+    top: 50%;
     width:20em;
     top: 50%;
     left: 50%;
     z-index: 1001;
     padding:20px;
+    z-index: 1001;
+    padding:20px;
     border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+#booking-content-block.expand {
+    animation: expand 0.3s forwards;
+  }
+  
+#booking-content-block.retract {
+    animation: retract 0.3s forwards;
+}
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
 }
@@ -63,6 +100,8 @@
     margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    gap: 0px;
+    width: 100%;
     gap: 0px;
     width: 100%;
 }
@@ -121,7 +160,7 @@
   }
   
   .container {
-    padding: 2px 16px;
+    /* padding: 2px 16px; */
   }
   /* Container for both sides */
 .container {
@@ -381,6 +420,7 @@ input[type=date]:focus::-webkit-datetime-edit {
     background-color: white;
     position: fixed;
     width:20em;
+    height:auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

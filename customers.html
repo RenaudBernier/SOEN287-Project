@@ -10,15 +10,23 @@
   <script defer src="test.js"></script>
 
   <!-- Redirects user to homepage if they are not admin -->
-  <script>if(!sessionStorage.getItem("admin-login")) {
+  <!-- <script>if(!sessionStorage.getItem("admin-login")) {
     alert("Error: unauthorized access \nPlease log in as an admin")
     window.location.href = "test.html";
-  }</script>
+  }</script> -->
 
 
 </head>
-<body>
+<body style="margin:0">
 <script defer type="text/javaScript" src="customers.js"></script>
+<div id="bill-overlay" class="billOverlayElems" onclick="closeBillOverlay()"></div>
+    <div id="bill-content-block" class="billOverlayElems">
+        <div class="field-class" id="bill-info">
+        </div>
+
+        <div class="field-class" id="bill-button-container">
+        </div>
+    </div>
 <div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
 <div id="content-block" class="overlayElems">
   <div>
@@ -81,6 +89,8 @@
     For Administrators
   </button>
 </div>
+
+
 <div class="container-header"></div>
 
 <div class="container-parent">

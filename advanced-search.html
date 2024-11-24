@@ -112,12 +112,15 @@
         </div>
             <input type="text" id="search-bar" onkeyup="searchServices()" placeholder="Search through the services...">
         <div id="filters">
-            <label for="services">Select a service:</label>
-            <select onchange="filterSearch('service-selector')" name="services" id="service-selector">
-                <option value="none">---</option>
-            </select>
-            <label for="sort">Sort services alphabetically</label>
-            <button name="sort" value="downward" id="sorting-arrow" onclick="sortAlphabetically()">&#8595</button>
+            <label for="services">Select a service:
+                <select onchange="filterSearch('service-selector')" name="services" id="service-selector">
+                    <option value="none">---</option>
+                </select>
+            </label>
+            
+            <label for="sort">Sort services alphabetically
+                <button name="sort" value="downward" id="sorting-arrow" onclick="sortAlphabetically()">&#8595</button>
+            </label>
             <label id="price-label">Price range:</label>
             <div id="price-sliders">
                 <div class="price-slider">
@@ -129,9 +132,11 @@
                     <input name="prices" type="range" class="slider" id="max-price" oninput="filterSearch('max-price')">    
                 </div>
             </div>
-            <label for="columns">Number of columns:</label>
-            <input onchange="changeNumOfColumns()" id="columns-input" name="columns" type="number" min="2" max="4"
+            <label for="columns">Number of columns:
+                <input onchange="changeNumOfColumns()" id="columns-input" name="columns" type="number" min="2" max="4"
                 value="2">
+            </label>
+            
         </div>
         <div id="services-menu"></div>
     </div>

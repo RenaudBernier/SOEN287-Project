@@ -18,6 +18,8 @@ const parseSchedule = (input) => {
 
 let services=[]
 let formattedResult=[]
+let userData={};
+let initializedUser=false;
 
   const fetchServices = async () => {
     try {
@@ -35,11 +37,17 @@ let formattedResult=[]
       console.error("Error fetching data:", error);
     }
   };
-
+  const fetchUserData = async () => {
+      const response = await fetch('/api/login-check');
+      const data = await response.json();
+      return data;
+  };
 const initializePage = async () => {
     await fetchServices();
     renderServicesMenu(services);
     renderFilters(services);
+    userData=await fetchUserData();
+    initializedUser=true;
   };
   initializePage();
 
@@ -232,8 +240,7 @@ function bookService(id) {
     const dateContainer=document.getElementById("date-container");
     const bookingContentBlock = document.getElementById("booking-content-block");
 
-    cLogin = sessionStorage.getItem("customer-login");
-    if (cLogin) {
+    if (initializedUser) {
         const bookingOverlayElems = document.getElementsByClassName("bookingOverlayElems");
         const dateSelector = document.createElement("input");
         dateSelector.setAttribute("id","date-selector");
@@ -352,7 +359,7 @@ function selectTime(timeSlotID,id,date,index) {
 //onclick method for the submitBookButton that closes the overlay for now if it is clickable
 async function submitTimeSlot() {
     const requestData = {
-        client_id: 0,          
+        client_id: userData.id,          
         service_id: serviceId,        
         time_slot: `${serviceDate} ${formattedResult[serviceId][serviceDate][serviceDateIndex]}`, 
         service_fulfilled: false,     

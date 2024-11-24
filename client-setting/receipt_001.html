@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt #001</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        table {
+            width: 40%;
+            max-width: fit-content;
+            margin: -8px;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px;
+            justify-content: center;
+        }
+
+        .dash-separator {
+            width: 250px;
+            border-top: 1px dashed black;
+            margin: 10px 0px;
+        }
+
+        .double-separator {
+            width: 300px;
+            max-width: 50%;
+            border-top: 2px dashed black;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+<body>
+    <img src="../images/greenscape-logo.png" width="140px" height="80px">
+
+    <table>
+        <tbody>
+            <tr>
+                <td colspan="2">GreenScape - Lawn Experts</td>
+            </tr>
+            <tr>
+                <td>Order #001</td>
+                <td>May 5, 2024</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="dash-separator"></div>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>Lawn care service</td>
+                <td>$100.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="dash-separator"></div>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>Total fee</td>
+                <td>$100.00</td>
+            </tr>
+            <tr>
+                <td>Visa credit<br>************1234</td>
+                <td>$100.00</td>
+            </tr>
+            <tr>
+                <td>Amount owed</td>
+                <td>$0.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="double-separator"></div>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>Service fulfilled</td>
+                <td><input type="checkbox" id="service-paid" checked></td>
+            </tr>
+            <tr>
+                <td>Client [A]</td>
+                <td>Order #001</td>
+            </tr>
+            <tr>
+                <td colspan="2">Thank you for being a valuable<br> GreenScape customer!</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
