@@ -11,18 +11,18 @@ class Card{
   }
 }
 
-class Customer{
-  constructor(email, password, name, address, cardNb, cvv, pfp, expDate){
-    this.email = email;
-    this.password = password;
-    this.name = name;
-    this.address = address;
-    this.pfp = pfp;
-    this.card = new Card(cardNb, cvv, expDate);
-    this.messageArray [message1, message2];
-    this.answerArray [undefined, answer2];
-  }
-}
+// class Customer{
+//   constructor(email, password, name, address, cardNb, cvv, pfp, expDate){
+//     this.email = email;
+//     this.password = password;
+//     this.name = name;
+//     this.address = address;
+//     this.pfp = pfp;
+//     this.card = new Card(cardNb, cvv, expDate);
+//     this.messageArray [message1, message2];
+//     this.answerArray [undefined, answer2];
+//   }
+// }
 
 let servicess = [
   {
@@ -53,15 +53,15 @@ let servicess = [
   }
 ]
 
-let services=[]
-
-
+let services=[];
+let company = [];
 
   async function fetchServices() {
+    console.log("LIHOEHLDFGHJKLDFGHJK");
     try {
       const response = await fetch('/api/services');
       const data = await response.json();
-      services = new Array(0);
+
       for(let i=0;i<data.length;i++){
         services.push(data[i]);
       }
@@ -69,7 +69,20 @@ let services=[]
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+    };
+
+    async function fetchCompany(){
+      try{
+        const response = await fetch('/api/company');
+        const data = await response.json();
+        company = data[0];
+        console.log("Company Array:", company);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    console.log("LHKJHKJ");
+
 
 const tempServices = sessionStorage.getItem("services");
     if(tempServices){
@@ -78,18 +91,13 @@ const tempServices = sessionStorage.getItem("services");
 
 const initializePage = async () => {
   await fetchServices();
+  await fetchCompany();
   renderServicesMenu();
+  test();
 };
 initializePage();
 
-
-// {
-//   const tempServices = sessionStorage.getItem("services");
-//   if(tempServices)
-//     services = JSON.parse(tempServices);
-// }
-
-let company = {
+let companyy = {
   name: "TutorMe Tutoring",
   logo: "https://cdn.discordapp.com/attachments/1288191400026050665/1296578898833834065/Screenshot_2024-10-17_at_13.54.51-Photoroom.png?ex=671f52f2&is=671e0172&hm=069bcdab3333ed9bbeb676a990a39743a232d8df79ac38e321c7b9038db1df64&",
   aboutUs: "TutorMe is a leading online tutoring platform dedicated to helping university students excel in a wide range of academic subjects. The company connects students with highly qualified tutors who specialize in fields such as math, science, humanities, and engineering. With a focus on personalized learning, TutorMe offers one-on-one sessions designed to meet the specific needs of each student, whether they require assistance with coursework, exam preparation, or developing a deeper understanding of complex topics."
@@ -110,12 +118,7 @@ let company = {
   ]
 }
 
-// const tempCompany = sessionStorage.getItem("company-profile");
-// if(tempCompany)
-//   company = JSON.parse(tempCompany);
-
 function renderServicesMenu(){
-
 
 const carousel = document.getElementsByClassName("carousel");
 const bulletContainer = document.getElementsByClassName("bullets")[0];
@@ -153,7 +156,8 @@ for (let i = 0; i < services.length; i++) {
   bullet.setAttribute("onclick", "bulletClick(" + i + ")");
   bulletContainer.appendChild(bullet);
 }
-}
+showItem(0);
+};
 
 
 //The services from the companies are appended to their corresponding slides
@@ -168,7 +172,7 @@ const items = document.getElementsByClassName("carousel-item");
 const bullets = document.getElementsByClassName("bullet");
 let itemIndex = 0;
 console.log(items[0]);
-showItem(0);
+
 
 //ADD SOMETHING TO GENERATE BULLETS
 
@@ -206,17 +210,20 @@ function bulletClick(index){
   showItem(itemIndex);
 }
 
-
-const aboutUs = document.querySelector(".aboutUs p");
-aboutUs.innerText= company.aboutUs;
+function test(){
+  const aboutUs = document.querySelector(".aboutUs p");
+  aboutUs.innerText= company.about_us;
+  console.log("company object: ",company); 
 
 const statNumbers = document.querySelectorAll(".stat h1");
-for(let i = 0; i < statNumbers.length; i++){
-  statNumbers[i].innerText = company.stats[i].number;
-}
-
 const statDescriptions = document.querySelectorAll(".stat p");
-for(let i = 0; i < statNumbers.length; i++){
-  statDescriptions[i].innerText = company.stats[i].description;
-}
 
+  statNumbers[0].innerText = company.stat1;
+  statDescriptions[0].innerText = company.stat1_desc;
+
+  statNumbers[1].innerText = company.stat2;
+  statDescriptions[1].innerText = company.stat2_desc;
+
+  statNumbers[2].innerText = company.stat3;
+  statDescriptions[2].innerText = company.stat3_desc;
+};
