@@ -12,6 +12,12 @@
 </head>
 <body>
 
+<div id="bill-overlay" class="billOverlayElems" onclick="closeBillOverlay()"></div>
+<div id="bill-content-block" class="billOverlayElems">
+    <div class="field-class" id="bill-info">
+    </div>
+</div>
+
 <div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
 <div id="content-block" class="overlayElems">
     <div>
@@ -91,50 +97,21 @@
 
         <div class="container-services-settings">        
             <h1>Order summary</h1>
-            <!--Retain only one company-->
 
-            <div class="container-sort">
-                <select id="date-sort">
-                    <option value="" disabled selected>Date range</option>
-                    <option>Upcoming</option>
-                    <option>Past month</option>
-                    <option>Past year</option>
-                </select>
-            </div>
 
             <table>
                 <thead>
                     <tr>
                         <th>Order</th>
                         <th>Service</th>
-                        <th>Company</th>
                         <th>Date</th>
                         <th>Total</th>
                     </tr>
                 </thead>
                 <tbody id="order-summary">
-                    <tr>
-                        <td><a href="receipt_001.html">#001</a></td>
-                        <td>Math Tutoring</td>
-                        <td>TutorMe</td>
-                        <td>May 5, 2024</td>
-                        <td>$100.00</td>
-                    </tr>
-                    <tr>
-                        <td><a href="../assets/receipts/receipt_002.html">#002</a></td>
-                        <td>Physics</td>
-                        <td>TutorMe</td>
-                        <td>Oct 10, 2024</td>
-                        <td>$50.00</td>
-                    </tr>
-                    <tr>
-                        <td><a href="../assets/receipts/receipt_003.html">#003</a></td>
-                        <td>Test</td>
-                        <td>TutorMe</td>
-                        <td>July 14, 2024</td>
-                        <td>$150.00</td>
-                    </tr>
+                <!-- client_settings.js generates the content of the tbody -->
                 </tbody>
+
             </table>
 
             <div class="container-prev-next">

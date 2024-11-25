@@ -162,51 +162,7 @@ app.post("/api/update-user", (req, res) => {
   res.redirect('/test.html');
 });
 
-app.get("/api/my-orders", (req, res) => {
-  const userId = req.session.user.id;
-  let servicesBooked;
-  console.log("THE USER'S ID IS " + userId);
 
-  function queryDB() {
-    return new Promise((resolve, reject) => {
-      db.query("SELECT sb.*, service.name FROM ServiceBooked sb " +
-          "JOIN Services service ON sb.service_id = service.id WHERE sb.client_id = ?", [userId], (err, result) => {
-        if (err) {
-          console.log("Error searching services booked");
-          return;
-        }
-        console.log("The result is:", result);
-        resolve(result);
-      })
-    })
-  }
-
-
-  function queryForName(servicesBooked) {
-    return new Promise((resolve, reject) => {
-      for (let i = 0; i < servicesBooked.length; i++) {
-        db.query("SELECT * FROM Services WHERE id = ?", [servicesBooked[i].service_id], (err, result) => {
-          if (err) {
-            console.log("Error retrieving services");
-            return;
-          }
-          console.log("Here is the request ", result);
-          servicesBooked[i].name = result[0].name;
-        })
-      }
-      resolve(servicesBooked);
-    })
-  }
-
-  async function addName() {
-    let servicesBooked = await queryDB();
-
-    console.log( "Returned array of services: ", servicesBooked);
-    res.json(servicesBooked);
-  }
-  addName();
-
-})
 
 customerLogin(app, db);
 adminServicesPage(app, db);
