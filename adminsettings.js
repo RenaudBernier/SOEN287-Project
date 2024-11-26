@@ -18,6 +18,8 @@ let company = {
     ]
 }
 
+
+
 const tempCompany = sessionStorage.getItem("company-profile");
 if(tempCompany)
     company = JSON.parse(tempCompany);
@@ -48,6 +50,71 @@ function storeCompanyProfile(){
         company.stats[i].number = numberInputs[i].value;
         company.stats[i].description = descInputs[i].value;
     }
-
+    console.log("company", company);
     sessionStorage.setItem("company-profile", JSON.stringify(company));
+    updateCompany(company);
 }
+
+// async function updateCompanyProfile(company){
+//     try{
+//         const response = await fetch('/api/company',{
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(company),
+//         });
+    
+//         if (response.ok) {
+//             const result = await response.json();
+//             console.log(result.message);
+//         } else {
+//             const error = await response.json();
+//             console.error('Error:', error.error);
+//         }
+//     } catch (err) {
+//         console.error('Network error:', err.message);
+//     }
+// };
+
+async function updateCompany(company) {
+    try {
+        // Prepare the payload
+        const payload = {
+            id : 0,
+            name: company.name,
+            about_us: company.aboutUs,
+            logo_url: company.logo,
+
+            
+
+            stat1: company.stats[0].number, 
+            stat1_desc : company.stats[0].description,
+            stat2: company.stats[1].number,
+            stat2_desc : company.stats[1].description,
+            stat3: company.stats[2].number,
+            stat3_desc : company.stats[2].description,
+        };
+
+        // Send the POST request to the backend
+        const response = await fetch('/api/company', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        // Handle the response
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Success:', result.message);
+        } else {
+            const error = await response.json();
+            console.error('Error:', error.error);
+        }
+    } catch (err) {
+        console.error('Network error:', err.message);
+    }
+}
+

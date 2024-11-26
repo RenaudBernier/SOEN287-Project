@@ -144,6 +144,32 @@ app.get("/api/admin-login-check", (req, res) => {
     res.json("");
 });
 
+// const query = 'REPLACE INTO Company (name, about_us, logo_url, stat1, stat2, stat3) VALUES (?, ?, ?, ?, ?, ?)';
+// db.query(query, [data.name, data.about_us, data.logo_url, data.stat1, data.stat2, data.stat3], (err, results) => {
+//     if (err) {
+//         console.error('Error inserting data:', err.message);
+//         return;
+//     }
+//     console.log('Data inserted successfully:', results);
+// });
+
+app.post('/api/company', (req, res) => {
+  const query = 'REPLACE INTO Company SET ?';
+  const company = req.body;
+  console.log("company: ", company);
+  // const stats = data.stats.map(stat => `${stat.number} ${stat.description}`);
+  //[data.name, data.about_us, data.logo_url, stats[0], stats[1], stats[2]
+  db.query(query, company, (err, results) => {
+      if (err) {
+          console.error('Error inserting data:', err.message);
+          return;
+      }
+      console.log('Data inserted successfully:', results);
+  });
+  
+});
+
+
 app.post("/api/update-user", (req, res) => {
 
   const newInfo = req.body;
