@@ -46,7 +46,7 @@ input[type="text"] {
     margin-bottom: 1em;
     border:0;
 }
-#submit-book-button :hover {
+#submit-book-button:hover {
     background: rgb(56, 5, 8);
 }
 .book-button{

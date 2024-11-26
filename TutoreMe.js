@@ -4,8 +4,8 @@ let serviceDateIndex;
 //this method would close the all the elements within the booking overlay
 let services = []
 let formattedResult = []
-let userData={};
-let initializedUser=false;
+let userData = {};
+let initializedUser = false;
 
 const parseSchedule = (input) => {
   const entries = input.split(';');
@@ -51,7 +51,11 @@ const initializePage = async () => {
   await fetchServices();
   renderServicesMenu();
   userData = await fetchUserData();
-  initializedUser=true;
+  if (userData === "loggedOut"||userData==="admin") {
+    initializedUser = false;
+  } else {
+    initializedUser = true;
+  }
 };
 initializePage();
 
@@ -130,21 +134,21 @@ function closeBookingOverlay() {
   bookingContentBlock.classList.remove("expand");
   bookingContentBlock.classList.add("retract");
   setTimeout(() => {
-  const bookingOverlayElems = document.getElementsByClassName("bookingOverlayElems");
-  //stop displaying all elements in the overlay by looping through all elements of class name bookingOverlayElems
-  for (var i = 0; i < bookingOverlayElems.length; i++) {
-    bookingOverlayElems[i].style.display = 'none';
-  }
-  //remove all children of the booking overlay so that the time slots are reset at next use
-  const timeSlots = document.getElementById("time-slots");
-  while (timeSlots.firstChild) {
-    timeSlots.removeChild(timeSlots.firstChild);
-  }
-  //grey out the submit button
-  const submitBookButton = document.getElementById("submit-book-button");
-  submitBookButton.style.backgroundColor = "rgb(133, 94, 97)";
-  //reset the value of the dateSelector input
-  dateSelector.value = "";
+    const bookingOverlayElems = document.getElementsByClassName("bookingOverlayElems");
+    //stop displaying all elements in the overlay by looping through all elements of class name bookingOverlayElems
+    for (var i = 0; i < bookingOverlayElems.length; i++) {
+      bookingOverlayElems[i].style.display = 'none';
+    }
+    //remove all children of the booking overlay so that the time slots are reset at next use
+    const timeSlots = document.getElementById("time-slots");
+    while (timeSlots.firstChild) {
+      timeSlots.removeChild(timeSlots.firstChild);
+    }
+    //grey out the submit button
+    const submitBookButton = document.getElementById("submit-book-button");
+    submitBookButton.style.backgroundColor = "rgb(133, 94, 97)";
+    //reset the value of the dateSelector input
+    dateSelector.value = "";
   }, 300);
 }
 let timeSelected = false;

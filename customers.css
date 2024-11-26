@@ -13,6 +13,7 @@ body {
 .customer-header{
     display: flex;
     flex-direction: row;
+    margin-top:2em;
 }
 .customer-header h4{
     width: fit-content;
@@ -43,7 +44,7 @@ input[type="date"]{
     margin-bottom: 1em;
     border:0;
 }
-#submit-bill-button :hover {
+#submit-bill-button:hover {
     background: rgb(56, 5, 8);
 }
 
@@ -60,6 +61,7 @@ input[type="date"]{
 }
 .billOverlayElems{
     display: none;
+    text-align: center;
 }
 @keyframes expand {
     from {
@@ -115,11 +117,15 @@ input[type="date"]{
     background: rgb(103, 103, 103);
 }
 .customer-message{
-    border-style: double;
-    border-width:3px;
+    background-color: aliceblue;
+    border-style: solid;
     padding-left: 1em;
 }
 .my-message{
+    background-color: rgb(222, 255, 245);
     border-style: solid;
     padding-left: 1em;
+}
+.textarea-class:focus{
+    box-shadow: 0 0 20px #719ECE;
 }

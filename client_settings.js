@@ -67,6 +67,11 @@ async function orderSummaryGeneration(){
 
         for (let i = 0; i < orders.length; i++) {
             const tr = document.createElement("tr");
+            if(i%2!=0){
+                tr.setAttribute("class", "odd-tr")
+            }else{
+                tr.setAttribute("class", "even-tr")
+            }
             const orderLabel = document.createElement("td");
             const serviceName = document.createElement("td");
             const date = document.createElement("td");

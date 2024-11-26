@@ -47,7 +47,12 @@ const initializePage = async () => {
     renderServicesMenu(services);
     renderFilters(services);
     userData=await fetchUserData();
-    initializedUser=true;
+    console.log(userData);
+    if (userData === "loggedOut"||userData==="admin") {
+        initializedUser = false;
+      } else {
+        initializedUser = true;
+      }
   };
   initializePage();
 

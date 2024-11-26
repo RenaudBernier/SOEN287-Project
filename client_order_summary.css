@@ -9,8 +9,8 @@
     width: 130px;
     border-right: 1px solid black;
     height: 100vh;
-    padding-right: 20px;
-    padding-top: 10px;
+    padding-right: 25px;
+    padding-top: 30px;
 }
 
 .container-parent{
@@ -74,10 +74,6 @@ input{
     width: 100%;
 }
 
-input[type="text"],input[type="number"] textarea {
-    width: 75%;
-}
-
 input.price{
     width: 50px;
 }
@@ -112,6 +108,10 @@ form{
     display: flex;
     flex-direction: column;
     margin-top: 25px;
+    border-style:solid;
+    border-color: rgb(190, 190, 190);
+    padding:1em;
+    border-radius: 10px;
 }
 
 @media all and (max-width: 1000px){
@@ -142,9 +142,40 @@ form{
 
 label{
     margin-top: 20px;
+    margin-bottom: 4px;
+    padding-left: 3px;
 }
 .delete-button{
+    color:white;
     margin-top: 20px;
     margin-bottom: 30px;
-    width: 75.6%;
+    width: 50%;
+    height:2em;
+    border-radius: 10px;
+    background-color: rgb(179, 0, 0);
+}
+.delete-button:hover {
+    background-color: rgb(108, 0, 0);
+}
+.input-styling{
+  padding: 5px 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width:50%;
+}
+
+#previous{
+    color:white;
+    text-decoration: none;
+    background-color: rgb(101, 9, 15);
+    height:25px;
+    width:75px;
+    margin-bottom: 1em;
+    border:0;
+}
+#previous:hover {
+    background: rgb(56, 5, 8);
 }

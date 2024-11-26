@@ -1,37 +1,3 @@
-let services = [
-    {
-        id: 1,
-        price: 35,
-        description: "Courses offered for Calculus I and II level problems. Flexible hours and you may cancel anytime.",
-        name: "Math tutoring",
-        image_url: "https://i0.wp.com/drsinghtutor.com/wp-content/uploads/2021/01/three-students-working-flatlay.webp?fit=920%2C614&ssl=1"
-    },
-    {
-        id: 2,
-        price: 50,
-        description: "Having trouble with your physics assignements? Our top professionals are here to help you better understand any material that may trouble you.",
-        name: "Physics",
-        image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Tutoring_Physics.jpg/1280px-Tutoring_Physics.jpg"
-    }
-    ,
-    {
-        id: 3,
-        price: 20,
-        description: "Want to sharpen your English skils? Come try out our tutoring services for writting and reading comprehension.",
-        name: "English",
-        image: "https://media.istockphoto.com/id/1383488079/photo/book-fair.jpg?s=612x612&w=0&k=20&c=9JKhUjlYzYOj6Qz0OdEWcZAn_MoepltCHZRmROzEf9o="
-    }
-    ,
-    {
-        id: 4,
-        price: 200,
-        description: "Learn coding with the newest provided technologies available. We offer courses in Python, JavaScript, C++, and many more!",
-        name: "Programming",
-        image: "https://burst.shopifycdn.com/photos/coding-on-laptop.jpg?width=1000&format=pjpg&exif=0&iptc=0"
-    }
-]
-
-
 async function fetchServices() {
     let services = 0;
     try {
@@ -49,7 +15,6 @@ async function fetchServices() {
 
 // Creates 1 form with every field necessary for a service
 function createFormItems(index) {
-    const header = document.createElement('h3');
     const idLabel = document.createElement('label');
     const idInput = document.createElement('input');
     const nameLabel = document.createElement('label');
@@ -61,6 +26,8 @@ function createFormItems(index) {
     const imageLabel = document.createElement('label');
     const imageInput = document.createElement('input');
     const deleteButton = document.createElement('input');
+    const divider = document.createElement('div');
+
 
     idInput.setAttribute('type', 'number');
     nameInput.setAttribute('type', 'text');
@@ -71,12 +38,19 @@ function createFormItems(index) {
     deleteButton.className = "delete-button";
     deleteButton.setAttribute('onclick', 'removeService(' + index + ')');
 
+    idInput.classList.add('input-styling');
+    nameInput.classList.add('input-styling');
+    priceInput.classList.add('input-styling');
+    descriptionInput.classList.add('input-styling');
+    imageInput.classList.add('input-styling');
+    divider.style.borderBottom = "3px dashed #bbb ";
+    divider.style.width="50%";
+
     idInput.id = 'id-' + index;
     nameInput.id = 'name-' + index;
     priceInput.id = 'price-' + index;
     descriptionInput.id = 'description-' + index;
 
-    header.innerText = "Service";
     idLabel.innerText = "ID";
     nameLabel.innerText = "Service name";
     priceLabel.innerText = "Price ($)";
@@ -85,10 +59,10 @@ function createFormItems(index) {
     deleteButton.value = "Delete Service";
 
     idInput.className = 'service-id';
-    nameInput.className = 'service-name';
-    priceInput.className = 'price';
-    descriptionInput.className = 'description';
-    imageInput.className = 'image';
+    nameInput.classList.add('service-name');
+    priceInput.classList.add('price');
+    descriptionInput.classList.add('description');
+    imageInput.classList.add('image');
     console.log(priceInput.className);
 
     idInput.value = services[index].id;
@@ -99,7 +73,6 @@ function createFormItems(index) {
 
     idInput.style.width = "30px";
 
-    servicesForm.appendChild(header);
     servicesForm.appendChild(idLabel);
     servicesForm.appendChild(idInput);
     servicesForm.appendChild(nameLabel);
@@ -111,6 +84,7 @@ function createFormItems(index) {
     servicesForm.appendChild(imageLabel);
     servicesForm.appendChild(imageInput);
     servicesForm.appendChild(deleteButton);
+    servicesForm.appendChild(divider);
     console.log(descriptionInput.value);
 }
 

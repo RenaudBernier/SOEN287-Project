@@ -16,7 +16,7 @@
     }</script> -->
 
 </head>
-<body>
+<body style="margin:0">
 <script defer type="text/javaScript" src="adminsettings.js"></script>
 <div id="overlay" class="overlayElems overlayElemsRegister" onclick="closeOverlay()"></div>
 <div id="content-block" class="overlayElems">
@@ -87,45 +87,45 @@
         <ul class="container-nav">   <!--reload separate pages instead of dynamically generating-->
             <li><a href="#">Company profile</a></li>
             <li><a href="offered-services.html">Offered services</a></li>
-            <li><a href="customers.html">Customers</a></li>
+            <li><a href="customers.html">Customer overview</a></li>
 
         </ul>
 
     </nav>
 
     <div class="services-container">
-        <h1>My Profile</h1>
+        <h1>Company Profile</h1>
         <!--Retain only one company-->
         <div id="profile-container">
             <form id="profile-form" action="">
                 <label for="name">Company Name</label>
-                <input type="text" id="name">
+                <input type="text" id="name" class="input-styling">
                 <label for="logoURL">Logo URL</label>
-                <input type="text" id="logoURL">
+                <input type="text" id="logoURL" class="input-styling">
                 <label for="about-us">About Us section</label>
-                <textarea id="about-us" cols="30" rows="10"></textarea>
+                <textarea id="about-us" cols="30" rows="10" class="input-styling"></textarea>
                 
                 <div class="edit-stats">
                     <div class="stat-container">
                         <b>Stat1</b>
                         <label for="number1">Number (include unit)</label>
-                        <input type="text" id="number1" class="number">
+                        <input type="text" id="number1" class="number input-styling">
                         <label for="desc1">Description (~10 words)</label>
-                        <textarea name="" id="desc1" class="desc" cols="23" rows="4"></textarea>
+                        <textarea name="" id="desc1" class="desc input-styling" cols="23" rows="4"></textarea>
                     </div>
                     <div class="stat-container">
                         <b>Stat2</b>
                         <label for="number2">Number (include unit)</label>
-                        <input type="text" id="number2" class="number">
+                        <input type="text" id="number2" class="number input-styling">
                         <label for="desc2">Description (~10 words)</label>
-                        <textarea name="" id="desc2" class="desc" cols="23" rows="4"></textarea>
+                        <textarea name="" id="desc2" class="desc input-styling" cols="23" rows="4"></textarea>
                     </div>
                     <div class="stat-container">
                         <b>Stat3</b>
                         <label for="number3">Number (include unit)</label>
-                        <input type="text" id="number3" class="number">
+                        <input type="text" id="number3" class="number input-styling">
                         <label for="desc3">Description (~10 words)</label>
-                        <textarea name="" id="desc3" class="desc" cols="23" rows="4"></textarea>
+                        <textarea name="" id="desc3" class="desc input-styling" cols="23" rows="4"></textarea>
                     </div>
                 </div>
             </form>

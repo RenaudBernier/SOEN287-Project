@@ -85,16 +85,6 @@
 #booking-content-block.retract {
     animation: retract 0.3s forwards;
 }
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-}
-#booking-content-block.expand {
-    animation: expand 0.3s forwards;
-  }
-  
-#booking-content-block.retract {
-    animation: retract 0.3s forwards;
-}
 
 #services-menu{
     margin-top: 1em;
@@ -354,7 +344,7 @@
     border:0;
     margin-bottom: 15px;
 }
-#login-button :hover {
+#login-button:hover {
     background: rgb(56, 5, 8);
 }
 
@@ -388,7 +378,7 @@ input[type=date]:focus::-webkit-datetime-edit {
     margin-bottom: 1em;
     border:0;
 }
-#submit-book-button :hover {
+#submit-book-button {
     background: rgb(56, 5, 8);
 }
 .book-button{

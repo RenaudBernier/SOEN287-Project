@@ -174,6 +174,10 @@ function renderCustomerInfo(customers) {
         sTable.className = "services-table";
 
         const labelRow = document.createElement("tr");
+        labelRow.style.borderStyle="solid";
+        labelRow.style.borderColor="black";
+
+        labelRow.style.borderBottom="0";
 
         const tableLabels = new Array();
         for (let j = 0; j < 5; j++) {
@@ -239,7 +243,7 @@ function renderCustomerInfo(customers) {
             if (customers[i].services[j].customerMessage !== undefined) {
                 const custMessage = document.createElement("div");
                 custMessage.className = "customer-message";
-                custMessage.innerHTML = "<h4>Customer said:</h4>";
+                custMessage.innerHTML = "<h4>Customer message:</h4>";
 
 
                 const custMessageTxt = document.createElement("p");
@@ -256,7 +260,7 @@ function renderCustomerInfo(customers) {
 
             myMessage.className = "my-message";
             myMessage.id = 'c' + i + '-s' + j + '-my-message';
-            myMessage.innerHTML = "<h4>You replied:</h4>";
+            myMessage.innerHTML = "<h4>Your reply:</h4>";
 
             const myMessageTxt = document.createElement("p");
             myMessageTxt.innerText = customers[i].services[j].adminMessage;
@@ -277,20 +281,22 @@ function renderCustomerInfo(customers) {
             //CREATE INPUT BOX FOR MODIFY/SEND AND APPEND TO TD
             const messageBox = document.createElement("textarea");
             messageBox.style.width="100%";
+            messageBox.style.marginTop="1em";
             messageBox.style.boxSizing= "border-box";
+            messageBox.setAttribute("class","textarea-class")
             messageBox.setAttribute("rows", "8");
             if (customers[i].services[j].reponse !== undefined) {
                 messageBox.innerText = customers[i].services[j].reponse;
             }
             else
-                myMessage.setAttribute("placeholder", "Type your reply here");
+                myMessage.setAttribute("placeholder", "-> Type your reply here");
 
-            messageBox.setAttribute("placeholder", "Type your reply here");
+            messageBox.setAttribute("placeholder", "-> Type your reply here");
             messageBox.id = "c" + i + "-s" + j + "-message-box";
             td.appendChild(messageBox);
 
             const sendBtn = document.createElement("button");
-            sendBtn.innerText = "Send Reply / Edit current reply";
+            sendBtn.innerText = "Send / Edit reply";
             sendBtn.style.width="100%";
             sendBtn.setAttribute("class","customer-btn")
             const orderId=customers[i].services[j].orderId;
@@ -355,12 +361,12 @@ function openBill(customerInfo, bookedServiceInfo) {
     const billServiceOrder = document.createElement("h2");
     billServiceOrder.innerHTML="Order #"+bookedServiceInfo.orderId
     billServiceOrder.setAttribute("class", "billOverlayElems");
-    billServiceOrder.style.textAlign="center";
+    billServiceOrder.style.marginBottom="0";
 
     const billServiceName = document.createElement("h3");
     billServiceName.innerHTML="For " + bookedServiceInfo.name;
     billServiceName.setAttribute("class", "billOverlayElems");
-    billServiceName.style.textAlign="center";
+    billServiceName.style.marginTop="3px";
 
     const billServiceClient = document.createElement("h5");
     billServiceClient.innerHTML="Client Name: " + customerInfo.name;
@@ -455,6 +461,7 @@ async function submitPaymentConfirmation(checkedStatus,checkedOrder){
         console.error("An error occurred while updating response:", error);
       }
     closeBillOverlay();
+    location.reload();
 }
 function closeBillOverlay() {
     const billContentBlock = document.getElementById("bill-content-block");

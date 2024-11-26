@@ -1,5 +1,4 @@
 .container-header{
-    border-bottom: 1px solid black;
     width: 100vh;
 }
 
@@ -69,4 +68,13 @@ li {
 .container-submit-discard input[type="reset"] {
     margin-top: -1px;
     width: 49%;
+}
+
+.client-input{
+  padding: 5px 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
