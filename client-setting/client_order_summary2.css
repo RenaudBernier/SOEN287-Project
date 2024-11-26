@@ -93,6 +93,7 @@ th, td {
 }
 .billOverlayElems{
     display: none;
+    text-align: center;
 }
 @keyframes expand {
     from {

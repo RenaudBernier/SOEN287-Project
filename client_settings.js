@@ -119,12 +119,12 @@ function openBill(customerInfo, bookedServiceInfo) {
     const billServiceOrder = document.createElement("h2");
     billServiceOrder.innerHTML="Order #"+bookedServiceInfo.order_id
     billServiceOrder.setAttribute("class", "billOverlayElems");
-    billServiceOrder.style.textAlign="center";
+    billServiceOrder.style.marginBottom="0";
 
     const billServiceName = document.createElement("h3");
     billServiceName.innerHTML="For " + bookedServiceInfo.name;
     billServiceName.setAttribute("class", "billOverlayElems");
-    billServiceName.style.textAlign="center";
+    billServiceName.style.marginTop="3px";
 
     const billServiceClient = document.createElement("h5");
     billServiceClient.innerHTML="Client Name: " + customerInfo.name;
@@ -151,18 +151,17 @@ function openBill(customerInfo, bookedServiceInfo) {
 
     var billServiceCompleted = document.createElement("input");
     billServiceCompleted.setAttribute("type", "checkbox");
+    billServiceCompleted.setAttribute("disabled","true");
     billServiceCompleted.setAttribute("id","checkbox-"+bookedServiceInfo.orderId);
     billServiceCompleted.setAttribute("name", "payment");
     billServiceCompleted.setAttribute("class", "billOverlayElems");
     billServiceCompleted.style.width = "auto";
 
-    if(bookedServiceInfo.value!="modified"){
-        if(bookedServiceInfo.serviceFulfilled===0){
+        if(bookedServiceInfo.service_fulfilled===0){
             billServiceCompleted.checked=false;
         }else{
             billServiceCompleted.checked=true;
         }
-    }
 
     billInfo.appendChild(billServiceOrder);
     billInfo.appendChild(billServiceName);

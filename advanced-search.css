@@ -171,7 +171,7 @@ input[type="text"] {
 	outline: inherit;
 }
 #services-pannel{
-    width:95%;
+    width:100%;
     margin-left: auto;    
     margin-right: auto;
     background-color: #e0e0e0;
@@ -201,7 +201,7 @@ input[type="text"] {
 }
 #logo-container {
     flex: 1;
-    width:95%;
+    width:100%;
     margin-left: auto;    
     margin-right: auto;
     text-align: center;
