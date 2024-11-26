@@ -71,7 +71,7 @@ input{
 .container-add-save {
     display: flex;
     justify-content:space-between;
-    width: 100%;
+    width: 50%;
 }
 
 input.price{
@@ -166,13 +166,22 @@ label{
   box-sizing: border-box;
   width:50%;
 }
-
+#add{
+    height:3em;
+    border-radius: 5px;
+    border-width:1px;
+}
+#add:hover{
+    color:white;
+    background-color: rgb(150, 150, 150);
+}
 #previous{
     color:white;
     text-decoration: none;
     background-color: rgb(101, 9, 15);
-    height:25px;
-    width:75px;
+    height:3em;
+    width:95px;
+    border-radius: 10px;
     margin-bottom: 1em;
     border:0;
 }
