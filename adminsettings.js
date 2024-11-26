@@ -50,32 +50,9 @@ function storeCompanyProfile(){
         company.stats[i].number = numberInputs[i].value;
         company.stats[i].description = descInputs[i].value;
     }
-    console.log("company", company);
     sessionStorage.setItem("company-profile", JSON.stringify(company));
     updateCompany(company);
 }
-
-// async function updateCompanyProfile(company){
-//     try{
-//         const response = await fetch('/api/company',{
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(company),
-//         });
-    
-//         if (response.ok) {
-//             const result = await response.json();
-//             console.log(result.message);
-//         } else {
-//             const error = await response.json();
-//             console.error('Error:', error.error);
-//         }
-//     } catch (err) {
-//         console.error('Network error:', err.message);
-//     }
-// };
 
 async function updateCompany(company) {
     try {

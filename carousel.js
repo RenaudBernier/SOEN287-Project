@@ -57,7 +57,6 @@ let services=[];
 let company = [];
 
   async function fetchServices() {
-    console.log("LIHOEHLDFGHJKLDFGHJK");
     try {
       const response = await fetch('/api/services');
       const data = await response.json();
@@ -81,7 +80,6 @@ let company = [];
         console.error("Error fetching data:", error);
       }
     }
-    console.log("LHKJHKJ");
 
 
 const tempServices = sessionStorage.getItem("services");
@@ -147,8 +145,6 @@ for (let i = 0; i < services.length; i++) {
   content.appendChild(name);
   content.appendChild(description);
 
-  console.log(slide);
-  console.log(carousel);
   carousel[0].appendChild(slide);
 
   const bullet = document.createElement('div');
@@ -171,8 +167,6 @@ for (let i = 0; i < titles.length; i++) {
 const items = document.getElementsByClassName("carousel-item");
 const bullets = document.getElementsByClassName("bullet");
 let itemIndex = 0;
-console.log(items[0]);
-
 
 //ADD SOMETHING TO GENERATE BULLETS
 
@@ -213,7 +207,6 @@ function bulletClick(index){
 function test(){
   const aboutUs = document.querySelector(".aboutUs p");
   aboutUs.innerText= company.about_us;
-  console.log("company object: ",company); 
 
 const statNumbers = document.querySelectorAll(".stat h1");
 const statDescriptions = document.querySelectorAll(".stat p");

@@ -4,7 +4,6 @@ let customerInfo;
 async function fillInputBoxes(){
     const res = await fetch("/api/login-check");
     const userInfo = await res.json();
-    console.log(userInfo);
 
     if(userInfo !== "loggedOut" && window.location.href.includes("client_settings.html")){
         const nameBox = document.getElementById("client-name");
@@ -24,14 +23,12 @@ async function fillInputBoxes(){
         cvvBox.value = userInfo.CVV;
     }
 
-    console.log("in function: " + userInfo.id);
     id = await userInfo.id;
     customerInfo = await userInfo;
 }
 
 fillInputBoxes();
 
-console.log("out of func: " + id);
 
 async function updateUserData(event){
     event.preventDefault();
@@ -46,7 +43,6 @@ async function updateUserData(event){
     const expiryDate = form.elements["expiryDate"].value;
     const CVV = form.elements["CVV"].value;
 
-    console.log("In newInfo: " + id);
     const newInfo = {id, name, email, password, address, creditCardNumber, expiryDate, CVV};
 
     fetch("/api/update-user", {
@@ -63,7 +59,6 @@ async function orderSummaryGeneration(){
     if (orderContainer !== null) {
         const response = await fetch(`/api/my-orders/`);
         const orders = await response.json();
-        console.log("Received array: ", orders);
 
         for (let i = 0; i < orders.length; i++) {
             const tr = document.createElement("tr");
@@ -134,6 +129,10 @@ function openBill(customerInfo, bookedServiceInfo) {
     billServiceEmail.innerHTML="Email: " + customerInfo.email;
     billServiceEmail.setAttribute("class", "billOverlayElems");
 
+    const billServicePrice = document.createElement("h5");
+    billServicePrice.innerHTML="Price: $" + bookedServiceInfo.price.toFixed(2);
+    billServicePrice.setAttribute("class", "billOverlayElems");
+
     const billServiceDate = document.createElement("h5");
     billServiceDate.innerHTML="Date: " + bookedServiceInfo.date+" at "+bookedServiceInfo.time;
     billServiceDate.setAttribute("class", "billOverlayElems");
@@ -167,6 +166,7 @@ function openBill(customerInfo, bookedServiceInfo) {
     billInfo.appendChild(billServiceName);
     billInfo.appendChild(billServiceClient);
     billInfo.appendChild(billServiceEmail);
+    billInfo.appendChild(billServicePrice);
     billInfo.appendChild(billServiceDate);
     billInfo.appendChild(billServiceCompletedContainer);
     billServiceCompletedContainer.appendChild(billServiceCompletedLabel);

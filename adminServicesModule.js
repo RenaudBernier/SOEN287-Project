@@ -39,7 +39,6 @@ module.exports = function adminServicesPage(app, db) {
         }
 
         for (let i = 0; i < services.length; i++) {
-            console.log(db_ids);
             //Updates existing row
             if (db_ids.some(id => id == services[i].id)) {
                 let query = db.query(`UPDATE Services SET name = ?, description = ?, price = ?, image_url = ? WHERE id = ?`,
@@ -64,7 +63,6 @@ module.exports = function adminServicesPage(app, db) {
             }
         }
         for (let i = 0; i < db_ids.length; i++) {
-            console.log("Array IDS" + array_ids);
             if (!(array_ids.some(id => id == db_ids[i]))) {
                 let query = db.query(`DELETE FROM Services WHERE id = ?`, db_ids[i], (err) => {
                     if (err)

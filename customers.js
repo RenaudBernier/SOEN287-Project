@@ -48,7 +48,6 @@ const initializePage = async () => {
         for (let j = 0; j < serviceBooked.length; j++) {
             let tmpService = {};
             if (userData[i].id == serviceBooked[j].client_id) {
-
                 tmpService.date = serviceBooked[j].time_slot.slice(0, serviceBooked[j].time_slot.indexOf(' '));
                 tmpService.time = serviceBooked[j].time_slot.slice(serviceBooked[j].time_slot.indexOf(' ') + 1);
                 tmpService.customerMessage = serviceBooked[j].message;
@@ -59,6 +58,8 @@ const initializePage = async () => {
                     if (serviceBooked[j].service_id === services[k].id) {
                         tmpService.name = services[k].name;
                         tmpService.serviceId=services[k].id;
+                        tmpService.price=services[k].price;
+
                     }
 
                 }
@@ -376,6 +377,10 @@ function openBill(customerInfo, bookedServiceInfo) {
     billServiceEmail.innerHTML="Email: " + customerInfo.email;
     billServiceEmail.setAttribute("class", "billOverlayElems");
 
+    const billServicePrice = document.createElement("h5");
+    billServicePrice.innerHTML="Price: $" + bookedServiceInfo.price.toFixed(2);
+    billServicePrice.setAttribute("class", "billOverlayElems");
+
     const billServiceDate = document.createElement("h5");
     billServiceDate.innerHTML="Date: " + bookedServiceInfo.date+" at "+bookedServiceInfo.time;
     billServiceDate.setAttribute("class", "billOverlayElems");
@@ -410,6 +415,7 @@ function openBill(customerInfo, bookedServiceInfo) {
     billInfo.appendChild(billServiceName);
     billInfo.appendChild(billServiceClient);
     billInfo.appendChild(billServiceEmail);
+    billInfo.appendChild(billServicePrice);
     billInfo.appendChild(billServiceDate);
     billInfo.appendChild(billServiceCompletedContainer);
     billServiceCompletedContainer.appendChild(billServiceCompletedLabel);

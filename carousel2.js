@@ -81,7 +81,6 @@ class Card{
         console.error("Error fetching data:", error);
       }
       };
-  console.log("company", company);
   
   const tempServices = sessionStorage.getItem("services");
       if(tempServices){
@@ -144,8 +143,7 @@ class Card{
     content.appendChild(name);
     content.appendChild(description);
   
-    console.log(slide);
-    console.log(carousel);
+  
     carousel[0].appendChild(slide);
   
     const bullet = document.createElement('div');
@@ -167,7 +165,6 @@ class Card{
   const items = document.getElementsByClassName("carousel-item");
   const bullets = document.getElementsByClassName("bullet");
   let itemIndex = 0;
-  console.log(items[0]);
   showItem(0);
   
   //ADD SOMETHING TO GENERATE BULLETS
@@ -209,7 +206,6 @@ class Card{
   
   const aboutUs = document.querySelector(".aboutUs p");
   aboutUs.innerText= company.aboutUs;
-  console.log("company object: ",company); 
   
   const statNumbers = document.querySelectorAll(".stat h1");
   for(let i = 0; i < statNumbers.length; i++){
