@@ -103,3 +103,9 @@ function registerUser(){
     const customer = new Customer(email, password, username, 0, cardNb, cvv, 0, cardDate );
     sessionStorage.setItem("customer-login", 1);
 }
+
+const form = document.getElementById("register-form");
+form.addEventListener("keydown", event => {
+    if(event.key === "Enter")
+        event.preventDefault();
+})
