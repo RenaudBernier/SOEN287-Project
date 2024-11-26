@@ -141,8 +141,8 @@ form{
 }
 
 label{
-    margin-top: 20px;
-    margin-bottom: 4px;
+    margin-top: 10px;
+    margin-bottom: 2px;
     padding-left: 3px;
 }
 .delete-button{
@@ -160,6 +160,7 @@ label{
 .input-styling{
   padding: 5px 10px;
   margin: 4px 0;
+  margin-top:0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
