@@ -121,7 +121,11 @@ async function modifyPageOnLogin() {
     signInButton.innerText = "Log out"
     signInButton.setAttribute('onclick', 'logOut()');
     registerButton.innerText = "My Page";
-    registerButton.setAttribute("href", "client-setting/client_settings.html");
+
+    if(!window.location.href.includes("client-setting/"))
+      registerButton.setAttribute("href", "client-setting/client_settings.html");
+    else
+      registerButton.setAttribute("href", "#");
   }
 }
 modifyPageOnLogin();
