@@ -1,3 +1,4 @@
+//what will be sent to the backend when the admin saves the company detail settings
 let company = {
     name: "TutorMe Tutoring",
     logo: "https://cdn.discordapp.com/attachments/1288191400026050665/1296578898833834065/Screenshot_2024-10-17_at_13.54.51-Photoroom.png?ex=671f52f2&is=671e0172&hm=069bcdab3333ed9bbeb676a990a39743a232d8df79ac38e321c7b9038db1df64&",
@@ -19,6 +20,7 @@ let company = {
 }
 
 
+// DOM objects 
 
 const tempCompany = sessionStorage.getItem("company-profile");
 if(tempCompany)
@@ -53,7 +55,7 @@ function storeCompanyProfile(){
     sessionStorage.setItem("company-profile", JSON.stringify(company));
     updateCompany(company);
 }
-
+//take the values from the DOM objects and put them in the company array
 async function updateCompany(company) {
     try {
         // Prepare the payload
