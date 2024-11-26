@@ -41,4 +41,17 @@ module.exports = function customerLogin(app, db){
         });
         res.redirect('/test.html');
     });
+
+    app.post("/api/email-check", (req, res) => {
+       db.query("SELECT * FROM Customers", (err, result) => {
+           const customersArr = result;
+           for (let i = 0; i < customersArr.length; i++) {
+               if (customersArr[i].email === req.body.email) {
+                   res.status(500).json({message: "invalid email"});
+                   return;
+               }
+           }
+           res.status(200).json({message: "successful"});
+       })
+    })
 }
