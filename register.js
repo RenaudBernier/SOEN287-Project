@@ -75,6 +75,7 @@ else {
 }
 }
 
+//Checks if a user is already registered with the entered email address
 async function emailUsedCheck(email){
     const res = await fetch("/api/email-check", {
         method: "POST",

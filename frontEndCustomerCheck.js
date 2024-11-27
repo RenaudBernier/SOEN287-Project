@@ -1,3 +1,5 @@
+//Checks if the user is logged in as customer. This is used to determine whether or not the user has access to some pages.
+
 async function checkforLoggedUser(){
     const res = await fetch("/api/login-check");
     const userInfo = await res.json();

@@ -1,7 +1,5 @@
 //This JS file is executed in the html using defer
 
-//This represents the company database, which is currently does not exist because there is no backend
-
 
 class Card{
   constructor(number, cvv, expDate) {
